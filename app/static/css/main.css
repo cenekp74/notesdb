@@ -68,11 +68,9 @@ a:hover {
     min-width: 70vw;
     max-width: 100vw;
     margin: 0 auto;
-    margin-bottom: 60px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1vw;
-    padding-top: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -97,7 +95,7 @@ button:not(:disabled) {
     align-items: center;
     display: flex;
     min-height: 50px;
-    position: fixed;
+    position: sticky;
     width: 100%;
     z-index: 10;
 }
@@ -264,27 +262,23 @@ footer {
     text-align: center;
     padding: 5px;
     padding-top: 1px;
-    position: fixed;
+    position: sticky;
     bottom: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-height: 30px;
+}
+
+footer p {
     background-color: var(--bg-color);
-    max-height: 56px;
+    padding: 5px;
+    margin-bottom: 3px;
+    font-size: 60%;
+    border-radius: var(--border-radius);
 }
 
-.social-icons a {
-    display: inline-block;
-    margin: 0 10px;
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 20px;
-}
-
-.system-links {
-    font-size: 80%;
-}
 
 /* #endregion footer */
 

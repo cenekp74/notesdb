@@ -16,6 +16,8 @@
     <div class="topnav" id="topnav">
         <a href="/" class="logo">NotesDB</a>
         <div id="topnav-links" class="topnav-left topnav-links">
+            <a href="#">test</a>
+            <a href="#">test2</a>
         </div>
         <a href="javascript:void(0);" class="icon" onclick="topnav_drop()">
             <i id="icon" class="fa fa-bars"></i>
@@ -35,17 +37,7 @@
         {% endblock %}
     </div>
     <footer>
-        <p>&copy; 2023 JSNO</p>
-        {% if current_user.is_authenticated %}
-        <div class="system-links">
-            <a href="{{ url_for('logout') }}">Log out</a>
-        </div>
-        {% endif %}
-        <div class="social-icons">
-            <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        </div>
+        <p>&copy; 2024 NotesDB</p>
     </footer>
     <script src="{{ url_for('static', filename='/js/main.js') }}"></script>
 </body>
