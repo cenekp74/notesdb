@@ -1,13 +1,13 @@
 body {
-    --text-color: #e7eaf9;
-    --bg-color: #161618;
-    --secondary-color: #1b2720;
-    --active-page-color: #666565;
+    --text-color: #ece2e5;
+    --bg-color: #231b1d;
+    --secondary-color: #45674d;
+    --active-page-color: #79a4a5;
     --link-color: #a682ee;
     --hover-link-color: #bca4ee;
     --button-color: #34145a;
     --disabled-button-color: #222224;
-    --disabled-text-color: #3c4d42;
+    --disabled-text-color: #cbb1b9;
     --border-radius: 15px;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -71,6 +71,7 @@ a:hover {
     margin-left: auto;
     margin-right: auto;
     padding-left: 1vw;
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -95,7 +96,7 @@ button:not(:disabled) {
     align-items: center;
     display: flex;
     min-height: 50px;
-    position: sticky;
+    position: fixed;
     width: 100%;
     z-index: 10;
 }
@@ -161,14 +162,6 @@ button:not(:disabled) {
 
 .topnav-left {
     float: left;
-}
-
-#search {
-    padding: 10px;
-    padding-left: 11px;
-    padding-right: 11px;
-    margin-top: 2px;
-    border-radius: 400px;
 }
 
 /* #endregion topnav*/
@@ -291,12 +284,6 @@ footer p {
     .content {
         min-width: 78vw;
     }
-    .search-input {
-        width: 75%;
-    }
-    .search-results {
-        width: 72%;
-    }
 }
 
 @media screen and (max-width: 1162px) {
@@ -360,15 +347,6 @@ footer p {
     }
     .content {
         min-width: 85vw;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .search-input {
-        width: 83%;
-    }
-    .search-results {
-        width: 80%;
     }
 }
 
