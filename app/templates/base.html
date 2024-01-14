@@ -13,16 +13,19 @@
 </head>
 
 <body>
-    <div class="topnav" id="topnav">
-        <a href="/" class="logo">NotesDB</a>
-        <div id="topnav-links" class="topnav-left topnav-links">
-            <a href="#">test</a>
-            <a href="#">test2</a>
+    <div class="topnav-wrapper">
+        <div class="topnav" id="topnav">
+            <a href="/" class="logo">NotesDB</a>
+            <div id="topnav-links" class="topnav-left topnav-links">
+                <a href="#">test</a>
+                <a href="#">test2</a>
+            </div>
+            <a href="javascript:void(0);" class="icon" onclick="topnav_drop()">
+                <i id="icon" class="fa fa-bars"></i>
+            </a>
         </div>
-        <a href="javascript:void(0);" class="icon" onclick="topnav_drop()">
-            <i id="icon" class="fa fa-bars"></i>
-        </a>
     </div>
+    
     <div class="content" onclick="hide_topnav()">
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
