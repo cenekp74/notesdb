@@ -11,7 +11,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=False, nullable=False)
     name = db.Column(db.String(100)) # realny jmeno
-    account_created = db.Column(db.DateTime)
+    account_created = db.Column(db.DateTime, nullable=False)
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(60), nullable=False)
     items = db.relationship('Item', backref='user')
@@ -25,7 +25,7 @@ class Item(db.Model):
     tags = db.Column(db.String(200)) # tagy oddeleny proste mezerou
     prof = db.Column(db.String(100)) # ucitel
     datetime_uploaded = db.Column(db.DateTime)
-    uploaded_by = db.Column(db.Integer, db.ForeignKey('User.id'))
+    uploaded_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     note = db.Column(db.Text) # nejaky dodatecny poznamky
     grade = db.Column(db.String(10)) # jakoze jakej rocnik
     subject = db.Column(db.String(10)) # predmet
