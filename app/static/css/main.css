@@ -8,7 +8,7 @@ body {
     --button-color: #34145a;
     --disabled-button-color: #222224;
     --disabled-text-color: #cbb1b9;
-    --border-radius: 15px;
+    --border-radius: 10px;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
