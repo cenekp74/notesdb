@@ -8,7 +8,6 @@ import datetime
 @app.route('/')
 @app.route('/index')
 def index():
-    flash('test', 'success')
     return render_template('index.html')
 
 #region login
