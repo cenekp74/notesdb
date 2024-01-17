@@ -5,10 +5,12 @@ body {
     --active-page-color: #79a4a5;
     --link-color: #a682ee;
     --hover-link-color: #bca4ee;
-    --button-color: #34145a;
+    --button-color: #1f4929;
+    --button-text-color: #d5cef5;
     --disabled-button-color: #222224;
     --disabled-text-color: #cbb1b9;
-    --form-color: #2d2628;
+    --form-color: #28272f;
+    --form-field-color: #37363e;
     --border-radius: 5px;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -43,7 +45,7 @@ a:visited {
     text-align: center;
     text-decoration: none;
     background-color: var(--button-color);
-    color: var(--link-color);
+    color: var(--button-text-color);
     border: none;
     border-radius: var(--border-radius);
     cursor: pointer;
@@ -188,10 +190,12 @@ button:not(:disabled) {
 
 /* #region forms */
 .container-form {
-    width: 40vw;
-    margin-top: 2rem;
+    width: 70%;
+    min-width: 320px;
+    max-width: 500px;
+    margin-top: 3rem;
     background-color: var(--form-color);
-    padding: 10px;
+    padding: 20px;
     border-radius: var(--border-radius);
 }
 
@@ -206,42 +210,43 @@ legend {
     float: left;
     width: 100%;
     padding: 0;
-    margin-bottom: .5rem;
+    margin-bottom: 1.2rem;
     font-size: calc(1.275rem + .3vw);
     line-height: inherit;
 }
 
-.form-group {
+.form-group:not(:last-child) {
     margin-bottom: 1rem;
 }
 
-.form-input {
+input.form-control {
     width: 100%;
+    background-color: var(--form-field-color);
+    color: var(--text-color);
+    border: none;
+    height: 3rem;
+    border-radius: var(--border-radius);
+    text-indent: 5px;
+    font-size: 90%;
+    margin-top: 10px;
 }
 
-.form-input.invalid {
+input.invalid {
     border-color: #dc3545;
     padding-right: calc(1.5em + .75rem);
 }
 
+.form-check-input {
+    margin-left: 0;
+}
+
 .form-check {
-    display: block;
-    min-height: 1rem;
+    font-size: 90%;
 }
 
-.btn {
-    background-color: transparent;
-    color: var(--text-color);
-    border: 1px solid transparent;
-    border-color: var(--text-color);
-    border-radius: .25rem;
-    font-size: 1rem;
-    line-height: 1.5;
-
-}
-
-.border-top {
-    border-top: 1px solid;
+.form-submit {
+    margin-top: 2rem;
+    width: 100%;
 }
 
 .invalid-feedback {
