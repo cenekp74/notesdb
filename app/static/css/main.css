@@ -2,7 +2,7 @@ body {
     --text-color: #ece2e5;
     --bg-color: #231b1d;
     --secondary-color: #45674d;
-    --active-page-color: #79a4a5;
+    --active-page-color: #1f4436c0;
     --link-color: #a682ee;
     --hover-link-color: #bca4ee;
     --button-color: #1f4929;
@@ -215,6 +215,10 @@ legend {
     line-height: inherit;
 }
 
+label {
+    font-size: 110%;
+}
+
 .form-group:not(:last-child) {
     margin-bottom: 1rem;
 }
@@ -240,7 +244,7 @@ input.invalid {
     margin-left: 0;
 }
 
-.form-check {
+.form-check label {
     font-size: 90%;
 }
 
