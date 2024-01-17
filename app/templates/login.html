@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+
+{% from "formutils.html" import render_field %}
+<div class="container-form">
+    <form method="POST" action="">
+        <fieldset>
+            <legend>Přihlášení</legend>
+            {{ render_field(form.email) }}
+            {{ render_field(form.password) }}
+            <div class="form-check">
+                {{ form.remember(class="form-check-input") }}
+                {{ form.remember.label(class="form-check-label") }}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn") }}
+        </div>
+    </form>
+</div>
+
+{% endblock %}

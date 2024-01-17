@@ -1,7 +1,7 @@
 from flask import render_template, url_for, send_from_directory, request, redirect, flash, make_response, abort, session
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
-from app.forms import LoginForm
+from app.forms import LoginForm, RegistrationForm
 from app.db_classes import User
 
 @app.route('/')
@@ -25,4 +25,16 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        hashed_pass = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data, email=form.email.data, password=hashed_pass)
+        db.session.add(user)
+        db.session.commit()
+        flash(f'Účet pro {form.username.data} byl úspěšně vytvořen', 'success')
+        return redirect(url_for('login'))
+    return render_template('register.html', form=form)
 #endregion login

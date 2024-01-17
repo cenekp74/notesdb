@@ -8,6 +8,7 @@ body {
     --button-color: #34145a;
     --disabled-button-color: #222224;
     --disabled-text-color: #cbb1b9;
+    --form-color: #2d2628;
     --border-radius: 5px;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -173,14 +174,25 @@ button:not(:disabled) {
     float: left;
 }
 
+.account-control {
+    float: right;
+    position: absolute;
+    right: 0;
+}
+
+.account-control a {
+    text-transform: capitalize;
+}
+
 /* #endregion topnav*/
 
 /* #region forms */
 .container-form {
-    max-width: 40rem;
-    margin-left: auto;
-    margin-right: auto;
+    width: 40vw;
     margin-top: 2rem;
+    background-color: var(--form-color);
+    padding: 10px;
+    border-radius: var(--border-radius);
 }
 
 fieldset {
@@ -263,7 +275,7 @@ footer {
     color: var(--text-color);
     text-align: center;
     padding-top: 1px;
-    position: sticky;
+    position: fixed;
     bottom: 0;
     width: 100%;
     display: flex;
@@ -343,7 +355,7 @@ footer p {
     }
 
     .topnav-links a {
-        text-transform: none;
+        text-transform: capitalize;
     }
 
     .topnav.responsive .topnav-links {

@@ -19,6 +19,14 @@
             <div id="topnav-links" class="topnav-left topnav-links">
                 <a href="#">test</a>
                 <a href="#">test2</a>
+                <div class="account-control">
+                    {% if current_user.is_authenticated %}
+                    <a href="#">ucet</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                    {% else %}
+                    <a href="{{ url_for('login') }}">Login</a>
+                    {% endif %}
+                </div>
             </div>
             <a href="javascript:void(0);" class="icon" onclick="topnav_drop()">
                 <i id="icon" class="fa fa-bars"></i>

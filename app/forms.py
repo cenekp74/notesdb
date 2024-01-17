@@ -7,16 +7,16 @@ from app.db_classes import User
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Heslo', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()], render_kw={"placeholder": "email"})
+    password = PasswordField('Heslo', validators=[DataRequired()], render_kw={"placeholder": "heslo"})
     remember = BooleanField('Pamatuj si mě')
     submit = SubmitField('Přihlásit')
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
-    email = StringField('Email', validators=[DataRequired(), Email(), Length(min=2, max=120)])
-    password = PasswordField('Heslo', validators=[DataRequired()])
-    confirm_password = PasswordField('Potvrdit heslo', validators=[DataRequired(), EqualTo('password')])
+    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)], render_kw={"placeholder": "uživatelské jméno"})
+    email = StringField('Email', validators=[DataRequired(), Email(), Length(min=2, max=120)], render_kw={"placeholder": "email"})
+    password = PasswordField('Heslo', validators=[DataRequired()], render_kw={"placeholder": "heslo"})
+    confirm_password = PasswordField('Potvrdit heslo', validators=[DataRequired(), EqualTo('password')], render_kw={"placeholder": "heslo znovu"})
     submit = SubmitField('Registrovat')
 
     def validate_username(self, username):
