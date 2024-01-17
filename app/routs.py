@@ -3,6 +3,7 @@ from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
 from app.forms import LoginForm, RegistrationForm
 from app.db_classes import User
+import datetime
 
 @app.route('/')
 @app.route('/index')
@@ -26,12 +27,12 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-@app.route("/register", methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_pass = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, email=form.email.data, password=hashed_pass)
+        user = User(username=form.username.data, email=form.email.data, password=hashed_pass, account_created=datetime.datetime.now())
         db.session.add(user)
         db.session.commit()
         flash(f'Účet pro {form.username.data} byl úspěšně vytvořen', 'success')

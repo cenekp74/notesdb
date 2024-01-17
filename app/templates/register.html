@@ -11,22 +11,16 @@
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         <fieldset>
-            <legend>Přihlášení</legend>
+            <legend>Registrace</legend>
+            {{ render_field(form.username) }}
             {{ render_field(form.email) }}
             {{ render_field(form.password) }}
-            <div class="form-check">
-                {{ form.remember(class="form-check-input") }}
-                {{ form.remember.label(class="form-check-label") }}
-            </div>
+            {{ render_field(form.confirm_password) }}
         </fieldset>
         <div class="form-group">
             {{ form.submit(class="button-link form-submit") }}
         </div>
     </form>
-    <small>Nemáš ještě účet? <a href="{{ url_for('register') }}">Registruj se</a></small>
+    <small>Už jsi registrovaný? <a href="{{ url_for('login') }}">Přihlaš se</a></small>
 </div>
-
-<script>
-    document.getElementById('login').classList.add('active');
-</script>
 {% endblock %}
