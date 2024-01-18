@@ -118,6 +118,14 @@ button:not(:disabled) {
     color: var(--alert-danger-text-color);
 }
 
+.alert i {
+    float: right;
+    line-height: 2rem;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+
 /* #region topnav*/
 .topnav-wrapper {
     display: flex;
