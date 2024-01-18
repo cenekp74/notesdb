@@ -6,7 +6,8 @@ body {
     --link-color: #a682ee;
     --hover-link-color: #bca4ee;
     --button-color: #1f4929;
-    --button-text-color: #d5cef5;
+    --button-text-color: #e3dff8;
+    --button-hover-text-color: #cfc6f8;
     --disabled-button-color: #222224;
     --disabled-text-color: #cbb1b9;
     --form-color: #28272f;
@@ -53,6 +54,10 @@ a:visited {
     border-radius: var(--border-radius);
     cursor: pointer;
     font-weight: 600;
+}
+
+.button-link:hover {
+    color: var(--button-hover-text-color)
 }
 
 a.disabled, .button-link.disabled a {
