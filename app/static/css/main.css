@@ -334,7 +334,7 @@ footer p {
     }
 }
 
-@media screen and (max-width: 1090px) {
+@media screen and (max-width: 1090px) { /* topnav collapse */
     .topnav:not(.responsive) a:not(.logo):not(.active):not(.icon) {
         display: none;
     }
@@ -387,6 +387,11 @@ footer p {
         z-index: 10;
         overflow: hidden;
     }
+
+    .account-control {
+        position: unset;
+    }
+
     .content {
         min-width: 85vw;
     }
