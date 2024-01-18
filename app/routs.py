@@ -10,7 +10,7 @@ import datetime
 def index():
     return render_template('index.html')
 
-#region login
+#region auth
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -38,4 +38,4 @@ def register():
         flash(f'Účet pro {form.username.data} byl úspěšně vytvořen', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', form=form)
-#endregion login
+#endregion auth

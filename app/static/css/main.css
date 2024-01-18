@@ -213,7 +213,7 @@ button:not(:disabled) {
 .account-control {
     float: right;
     position: absolute;
-    right: 0;
+    right: 2px;
 }
 
 .account-control a {
