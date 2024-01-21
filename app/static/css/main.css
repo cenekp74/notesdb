@@ -176,6 +176,15 @@ input[type=file] {
 .profile-view.container-form {
     width: 100%;
 }
+
+.profile-view.pp-image-container i {
+    position: absolute;
+    background-color: var(--bg-color);
+    padding: 5px;
+    border-radius: 50%;
+    margin-left: 90px;
+    top: 100px;
+}
 /* #endregion profileview */
 
 /* #region topnav*/
@@ -467,6 +476,10 @@ footer p {
     .profile-view.pp-image {
         width: 90px;
         height: 90px;
+    }
+    .profile-view.pp-image-container i {
+        margin-left: 70px;
+        top: 70px;
     }
     .account-page-container {
         flex-direction: column;

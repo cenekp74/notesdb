@@ -12,6 +12,7 @@
     <div class="profile-view profile-container">
         <div class="profile-view pp-image-container">
             <img onclick="openPpImageDialog()" class="profile-view pp-image cursor-pointer" src="{{ pp }}">
+            <i onclick="openPpImageDialog()" class="fa-solid fa-image cursor-pointer"></i>
         </div>
         <div class="profile-view profile-details">
             <small title="Account created: {{ user.account_created.date() }}">u/{{ user.username }}</small><small style="float: right; font-size: 70%;">Account created: {{ user.account_created.date() }}</small>
