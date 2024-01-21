@@ -9,7 +9,7 @@ body {
     --button-text-color: #e3dff8;
     --button-hover-text-color: #cfc6f8;
     --disabled-button-color: #222224;
-    --disabled-text-color: #cbb1b9;
+    --disabled-text-color: #b39ca3;
     --form-color: #28272f;
     --form-field-color: #37363e;
     --border-radius: 5px;
@@ -138,6 +138,14 @@ a mark {
     max-width: 125px;
     vertical-align: middle;
     border-radius: 50%;
+}
+
+input[type=file] {
+    color: var(--text-color);
+    padding: 5px;
+    background: var(--form-field-color);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--disabled-text-color);
 }
 
 /* #region profileview */
