@@ -26,8 +26,9 @@ def account():
             image_path = os.path.join(app.root_path, 'static/pp', image_name)
             image_size = (125, 125)
             new_image = Image.open(form.pp.data)
-            new_image.thumbnail(image_size)
+            new_image = new_image.resize(image_size)
             new_image.save(image_path)
+            os.remove(os.path.join(app.root_path, 'static/pp', current_user.pp))
             current_user.pp = image_name
         current_user.username = form.username.data
         current_user.email = form.email.data

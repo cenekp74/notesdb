@@ -20,7 +20,7 @@
                 <a href="#">test2</a>
                 <div class="account-control">
                     {% if current_user.is_authenticated %}
-                    <a href="{{ url_for('account') }}">Účet</a>
+                    <a id="account" href="{{ url_for('account') }}">Účet</a>
                     {% else %}
                     <a id="login" href="{{ url_for('login') }}">Login</a>
                     {% endif %}
