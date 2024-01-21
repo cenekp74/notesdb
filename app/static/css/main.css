@@ -60,6 +60,12 @@ a:visited {
     color: var(--button-hover-text-color)
 }
 
+[type="button"]:not(:disabled),
+[type="submit"]:not(:disabled),
+button:not(:disabled) {
+    cursor: pointer;
+}
+
 a.disabled, .button-link.disabled a {
     pointer-events: none;
     cursor: default;
@@ -72,6 +78,11 @@ a.disabled, .button-link.disabled a {
 
 a:hover {
     color: var(--hover-link-color);
+}
+
+a mark {
+    color: var(--bg-color);
+    background-color: var(--search-highlight-color);
 }
 
 .content {
@@ -87,17 +98,6 @@ a:hover {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-}
-
-a mark {
-    color: var(--bg-color);
-    background-color: var(--search-highlight-color);
-}
-
-[type="button"]:not(:disabled),
-[type="submit"]:not(:disabled),
-button:not(:disabled) {
-    cursor: pointer;
 }
 
 .alert {
@@ -125,6 +125,20 @@ button:not(:disabled) {
     cursor: pointer;
 }
 
+.text-danger {
+    color: var(--alert-danger-text-color);
+    font-size: 80%;
+}
+
+.display-flex {
+    display: flex;
+}
+
+.pp-image {
+    max-width: 125px;
+    vertical-align: middle;
+    border-radius: 50%;
+}
 
 /* #region topnav*/
 .topnav-wrapper {

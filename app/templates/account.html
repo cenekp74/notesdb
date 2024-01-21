@@ -8,28 +8,41 @@
 
 {% from "formutils.html" import render_field %}
 
-<div class="container-form">
-    <form method="POST" action="">
-        {{ form.hidden_tag() }}
-        <fieldset>
+<div class="display-flex" style="width: 90%;">
+    <div style="flex: 40%;margin-top: 3rem;">
+        <img onclick="openPpImageDialog()" class="pp-image" src="{{ pp }}">
+    </div>
+    <div style="flex: 60%;" class="container-form">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <div class="form-group">
+                    {{ form.pp.label }}
+                    {{ form.pp(class="form-control-file") }}
+                    {% if form.pp.errors %}
+                        <br>
+                        {% for error in form.pp.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {{ render_field(form.email) }}
+                {{ render_field(form.username) }}
+                {{ render_field(form.name) }}
+            </fieldset>
             <div class="form-group">
-                {{ form.pp.label }}
-                {{ form.pp(class="form-control-file") }}
-                {% if form.pp.errors %}
-                    {% for error in form.pp.errors %}
-                        <span class="text-danger">{{ error }}</span>
-                    {% endfor %}
-                {% endif %}
+                {{ form.submit(class="button-link form-submit") }}
             </div>
-            {{ render_field(form.email) }}
-            {{ render_field(form.username) }}
-            {{ render_field(form.name) }}
-        </fieldset>
-        <div class="form-group">
-            {{ form.submit(class="button-link form-submit") }}
-        </div>
-    </form>
+        </form>
+    </div>    
 </div>
+
+<script>
+    function openPpImageDialog() {
+        button = document.getElementById("pp")
+        button.click()
+    }
+</script>
 
 <a href="{{ url_for('logout') }}" class="button-link" style="margin-top: 1rem;">Odhlásit se</a>
 

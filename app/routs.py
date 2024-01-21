@@ -20,6 +20,7 @@ def account():
     form = UpdateaccForm()
     if form.validate_on_submit():
         if form.pp.data:
+            print('test')
             random_name = secrets.token_hex(10)
             _, extension = os.path.splitext(form.pp.data.filename)
             image_name = random_name + extension
