@@ -6,6 +6,31 @@
 
 {% block body %}
 
+{% from "formutils.html" import render_field %}
+
+<div class="container-form">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <div class="form-group">
+                {{ form.pp.label }}
+                {{ form.pp(class="form-control-file") }}
+                {% if form.pp.errors %}
+                    {% for error in form.pp.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {{ render_field(form.email) }}
+            {{ render_field(form.username) }}
+            {{ render_field(form.name) }}
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="button-link form-submit") }}
+        </div>
+    </form>
+</div>
+
 <a href="{{ url_for('logout') }}" class="button-link" style="margin-top: 1rem;">Odhlásit se</a>
 
 {% endblock %}
