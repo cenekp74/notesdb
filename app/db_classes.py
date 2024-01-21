@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(100)) # realny jmeno
     account_created = db.Column(db.DateTime, nullable=False)
     email = db.Column(db.String(120), unique=True)
+    pp = db.Column(db.String(20), nullable=False, default='default.png')
     password = db.Column(db.String(60), nullable=False)
     items = db.relationship('Item', backref='user')
     admin = db.Column(db.Integer, nullable=False, default=0)
