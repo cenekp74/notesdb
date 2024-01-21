@@ -20,7 +20,6 @@ def account():
     form = UpdateaccForm()
     if form.validate_on_submit():
         if form.pp.data:
-            print('test')
             random_name = secrets.token_hex(10)
             _, extension = os.path.splitext(form.pp.data.filename)
             image_name = random_name + extension
@@ -32,6 +31,7 @@ def account():
             current_user.pp = image_name
         current_user.username = form.username.data
         current_user.email = form.email.data
+        current_user.name = form.name.data
         db.session.commit()
         flash('Změny uloženy', 'success')
         redirect(url_for('account'))
@@ -40,7 +40,7 @@ def account():
         form.email.data = current_user.email
         form.name.data = current_user.name
     pp = url_for('static', filename='pp/' + current_user.pp)
-    return render_template('account.html', pp=pp, form=form)
+    return render_template('account.html', pp=pp, form=form, user=current_user)
 
 #region auth
 @app.route('/login', methods=['GET', 'POST'])

@@ -8,33 +8,42 @@
 
 {% from "formutils.html" import render_field %}
 
-<div class="display-flex" style="width: 90%;">
-    <div style="flex: 40%;margin-top: 3rem;">
-        <img onclick="openPpImageDialog()" class="pp-image" src="{{ pp }}">
+<div class="display-flex account-page-container" style="width: 100%;">
+    <div class="profile-view profile-container">
+        <div class="profile-view pp-image-container">
+            <img onclick="openPpImageDialog()" class="profile-view pp-image cursor-pointer" src="{{ pp }}">
+        </div>
+        <div class="profile-view profile-details">
+            <small title="Account created: {{ user.account_created.date() }}">u/{{ user.username }}</small><small style="float: right; font-size: 70%;">Account created: {{ user.account_created.date() }}</small>
+            <div>{{ user.name }}</div>
+        </div>
     </div>
-    <div style="flex: 60%;" class="container-form">
-        <form method="POST" action="" enctype="multipart/form-data">
-            {{ form.hidden_tag() }}
-            <fieldset>
+    <div style="flex: 60%">
+        <div class="profile-view container-form">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <fieldset>
+                    <div class="form-group">
+                        {{ form.pp.label }}
+                        {{ form.pp(class="form-control-file") }}
+                        {% if form.pp.errors %}
+                            <br>
+                            {% for error in form.pp.errors %}
+                                <span class="text-danger">{{ error }}</span>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    {{ render_field(form.email) }}
+                    {{ render_field(form.username) }}
+                    {{ render_field(form.name) }}
+                </fieldset>
                 <div class="form-group">
-                    {{ form.pp.label }}
-                    {{ form.pp(class="form-control-file") }}
-                    {% if form.pp.errors %}
-                        <br>
-                        {% for error in form.pp.errors %}
-                            <span class="text-danger">{{ error }}</span>
-                        {% endfor %}
-                    {% endif %}
+                    {{ form.submit(class="button-link form-submit") }}
                 </div>
-                {{ render_field(form.email) }}
-                {{ render_field(form.username) }}
-                {{ render_field(form.name) }}
-            </fieldset>
-            <div class="form-group">
-                {{ form.submit(class="button-link form-submit") }}
-            </div>
-        </form>
-    </div>    
+            </form>
+        </div>
+        <a href="{{ url_for('logout') }}" class="button-link" style="margin-top: 1rem;float:left;">Odhlásit se</a>
+    </div>
 </div>
 
 <script>
@@ -44,6 +53,5 @@
     }
 </script>
 
-<a href="{{ url_for('logout') }}" class="button-link" style="margin-top: 1rem;">Odhlásit se</a>
 
 {% endblock %}

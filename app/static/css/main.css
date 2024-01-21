@@ -62,6 +62,7 @@ a:visited {
 
 [type="button"]:not(:disabled),
 [type="submit"]:not(:disabled),
+.cursor-pointer,
 button:not(:disabled) {
     cursor: pointer;
 }
@@ -92,7 +93,6 @@ a mark {
     margin: 0 auto;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1vw;
     padding-top: 50px;
     display: flex;
     flex-direction: column;
@@ -139,6 +139,36 @@ a mark {
     vertical-align: middle;
     border-radius: 50%;
 }
+
+/* #region profileview */
+/* zobrazeni profilu bud v account.html nebo v profile.html (to zatim neni vytvoreny) */
+
+.profile-view.profile-container {
+    margin-top: 3rem;
+    margin-right: 1rem;
+    position: relative;
+    flex: 40%;
+}
+
+.profile-view.pp-image-container {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid var(--text-color);
+}
+
+.profile-view.pp-image {
+    margin-bottom: 1rem;
+}
+
+.profile-view.profile-details div {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
+.profile-view.container-form {
+    width: 100%;
+}
+/* #endregion profileview */
 
 /* #region topnav*/
 .topnav-wrapper {
@@ -412,10 +442,36 @@ footer p {
 
     .account-control {
         position: unset;
+        float: unset;
     }
 
     .content {
         min-width: 85vw;
+        padding-left: 1vw;
+        padding-right: 1vw;
+    }
+}
+
+@media screen and (max-width: 800px) { /* change profile display */
+    .profile-view.profile-details div {
+        font-size: 1.2rem;
+    }
+    .profile-view.pp-image {
+        width: 90px;
+        height: 90px;
+    }
+    .account-page-container {
+        flex-direction: column;
+    }
+    .profile-view.profile-container {
+        margin-top: .8rem;
+        margin-right: 0;
+    }
+    .profile-view.profile-details div {
+        margin-top: .2rem;
+    }
+    .container-form {
+        margin-top: 1rem;
     }
 }
 
@@ -427,7 +483,7 @@ footer p {
         font-size: 15px;
     }
     .content {
-        min-width: 90vw;
+        min-width: 95vw;
     }
 }
 
@@ -436,6 +492,6 @@ footer p {
         text-transform: none;
     }
     .content {
-        min-width: 95vw;
+        min-width: 100vw;
     }
 }
