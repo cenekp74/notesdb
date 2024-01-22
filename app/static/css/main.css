@@ -148,6 +148,11 @@ input[type=file] {
     border: 1px solid var(--disabled-text-color);
 }
 
+.account-page-container {
+    width: fit-content;
+    min-width: 75%;
+}
+
 /* #region profileview */
 /* zobrazeni profilu bud v account.html nebo v profile.html (to zatim neni vytvoreny) */
 
