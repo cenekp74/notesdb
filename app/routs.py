@@ -1,8 +1,8 @@
 from flask import render_template, url_for, send_from_directory, request, redirect, flash, make_response, abort, session
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
-from app.forms import LoginForm, RegistrationForm, UpdateaccForm
-from app.db_classes import User
+from app.forms import LoginForm, RegistrationForm, UpdateaccForm, ItemForm
+from app.db_classes import User, Item
 import datetime
 import secrets
 import os
@@ -42,6 +42,19 @@ def account():
         form.name.data = current_user.name
     pp = url_for('static', filename='pp/' + current_user.pp)
     return render_template('account.html', pp=pp, form=form, user=current_user)
+
+@app.route('/add', methods=['GET', 'POST'])
+def add_item():
+    if not current_user.is_authenticated:
+        flash('Pro přidání příspěvku se přihlašte')
+        return redirect(url_for('login'))
+    form = ItemForm()
+    if form.validate_on_submit():
+        pass
+    elif request.method == 'GET':
+        form.author.data = current_user.name
+    return render_template('add_item.html', form=form)
+
 
 #region auth
 @app.route('/login', methods=['GET', 'POST'])

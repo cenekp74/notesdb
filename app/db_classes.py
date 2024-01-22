@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False)
+    filenames = db.Column(db.String, nullable=False) # filenames separated by ;
     item_type = db.Column(db.String(10), nullable=False) # zapisky, pl, ucebnice, prezentace...
     author = db.Column(db.String(100)) # autor - default ten kdo nahrava
     tags = db.Column(db.String(200)) # tagy oddeleny proste mezerou
@@ -28,6 +29,5 @@ class Item(db.Model):
     datetime_uploaded = db.Column(db.DateTime)
     uploaded_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     note = db.Column(db.Text) # nejaky dodatecny poznamky
-    grade = db.Column(db.String(10)) # jakoze jakej rocnik
     subject = db.Column(db.String(10)) # predmet
     generated_content = db.Column(db.Text) # content rozpoznany ai

@@ -1,10 +1,11 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed, FileRequired
+from flask_wtf.file import FileField, FileAllowed, FileRequired, FileSize, MultipleFileField
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TimeField, IntegerField, ValidationError, SelectField, TextAreaField
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, NumberRange, Email, Length, EqualTo
 from app.db_classes import User
 from flask_login import current_user
+from app import VALID_ITEM_TYPES, VALID_SUBJECTS
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()], render_kw={"placeholder": "email"})
@@ -45,3 +46,14 @@ class UpdateaccForm(FlaskForm):
             email = User.query.filter_by(email=email.data).first()
             if email:
                 raise ValidationError('Email je již používán')
+            
+class ItemForm(FlaskForm):
+    name = StringField('Název', validators=[DataRequired(), Length(min=4, max=30)])
+    files = MultipleFileField('Soubory', validators=[FileRequired(), FileSize(max_size=30000000)])
+    item_type = SelectField('Typ', choices=VALID_ITEM_TYPES, validators=[DataRequired()])
+    author = StringField('Autor', validators=[Length(min=2, max=100)])
+    tags = StringField('Tagy (oddělené mezerou)', validators=[Length(max=200)])
+    prof = StringField('Profesor', validators=[Length(max=100)])
+    note = TextAreaField('Poznámky')
+    subject = SelectField('Předmět', choices=VALID_SUBJECTS)
+    submit = SubmitField('Potvrdit')

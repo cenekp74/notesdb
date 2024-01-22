@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+
+{% from "formutils.html" import render_field %}
+<div class="container-form">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            {{ render_field(form.name) }}
+            {{ form.files(class="form-control-file") }}
+                        {% if form.files.errors %}
+                            <br>
+                            {% for error in form.files.errors %}
+                                <span class="text-danger">{{ error }}</span>
+                            {% endfor %}
+                        {% endif %}
+            {{ render_field(form.item_type) }}
+            {{ render_field(form.author) }}
+            {{ render_field(form.tags) }}
+            {{ render_field(form.prof) }}
+            {{ render_field(form.note) }}
+            {{ render_field(form.subject) }}
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="button-link form-submit") }}
+        </div>
+    </form>
+</div>
+{% endblock %}
