@@ -324,6 +324,13 @@ textarea {
     resize: vertical;
     background-color: var(--form-field-color);
     border: 1px var(--bg-color) solid;
+    color: var(--text-color);
+}
+
+select {
+    background-color: var(--form-field-color);
+    color: var(--text-color);
+    border-radius: var(--border-radius);
 }
 
 .form-group:not(:last-child) {
