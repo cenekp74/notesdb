@@ -12,13 +12,16 @@
         {{ form.hidden_tag() }}
         <fieldset>
             {{ render_field(form.name) }}
-            {{ form.files(class="form-control-file") }}
-                        {% if form.files.errors %}
-                            <br>
-                            {% for error in form.files.errors %}
-                                <span class="text-danger">{{ error }}</span>
-                            {% endfor %}
-                        {% endif %}
+            <div class="form-group">
+                {{ form.files.label }}
+                {{ form.files(class="form-control-file") }}
+                {% if form.files.errors %}
+                    <br>
+                    {% for error in form.files.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
             {{ render_field(form.item_type) }}
             {{ render_field(form.author) }}
             {{ render_field(form.tags) }}

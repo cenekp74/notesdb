@@ -319,6 +319,13 @@ label {
     font-size: 110%;
 }
 
+textarea {
+    width: 100%;
+    resize: vertical;
+    background-color: var(--form-field-color);
+    border: 1px var(--bg-color) solid;
+}
+
 .form-group:not(:last-child) {
     margin-bottom: 1rem;
 }
@@ -331,8 +338,8 @@ input.form-control {
     height: 3rem;
     border-radius: var(--border-radius);
     text-indent: 5px;
-    font-size: 90%;
-    margin-top: 10px;
+    font-size: 100%;
+    margin-top: 0.2rem;
 }
 
 input.invalid {
