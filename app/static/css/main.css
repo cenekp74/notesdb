@@ -325,6 +325,7 @@ textarea {
     background-color: var(--form-field-color);
     border: 1px var(--bg-color) solid;
     color: var(--text-color);
+    border-radius: var(--border-radius);
 }
 
 select {
@@ -512,6 +513,7 @@ footer p {
     }
     .container-form {
         margin-top: 1rem;
+        width: 85%;
     }
 }
 
@@ -524,6 +526,9 @@ footer p {
     }
     .content {
         min-width: 95vw;
+    }
+    .container-form {
+        width: 90%;
     }
 }
 
