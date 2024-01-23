@@ -1,4 +1,5 @@
 from flask import render_template, url_for, send_from_directory, request, redirect, flash, make_response, abort, session
+from werkzeug.utils import secure_filename
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
 from app.forms import LoginForm, RegistrationForm, UpdateaccForm, ItemForm
@@ -7,6 +8,7 @@ import datetime
 import secrets
 import os
 from PIL import Image
+from app.utils import generate_unique_folder_hex
 
 @app.route('/')
 @app.route('/index')
@@ -50,7 +52,28 @@ def add_item():
         return redirect(url_for('login'))
     form = ItemForm()
     if form.validate_on_submit():
-        pass
+        filenames = [secure_filename(file.filename) for file in form.files.data]
+        filenames_string = ";".join(filenames)
+        folder = generate_unique_folder_hex()
+        os.mkdir(os.path.join(app.root_path, 'static/items', folder))
+        for file in form.files.data:
+            file.save(os.path.join(app.root_path, 'static/items', folder, secure_filename(file.filename)))
+
+        item = Item(
+            name = form.name.data,
+            folder = folder,
+            item_type = form.item_type.data,
+            author = form.author.data,
+            tags = form.tags.data,
+            prof = form.prof.data,
+            datetime_uploaded = datetime.datetime.now(),
+            note = form.note.data,
+            subject = form.subject.data,
+            filenames = filenames_string,
+            uploaded_by = current_user.id,
+        )
+        db.session.add(item)
+        db.session.commit()
     elif request.method == 'GET':
         form.author.data = current_user.name
     return render_template('add_item.html', form=form)

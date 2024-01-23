@@ -9,7 +9,7 @@ def load_user(user_id):
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=False, nullable=False)
+    username = db.Column(db.String(20), unique=True, nullable=False)
     name = db.Column(db.String(100)) # realny jmeno
     account_created = db.Column(db.DateTime, nullable=False)
     email = db.Column(db.String(120), unique=True)
@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False)
+    folder = db.Column(db.String(6), nullable=False, unique=True)
     filenames = db.Column(db.String, nullable=False) # filenames separated by ;
     item_type = db.Column(db.String(10), nullable=False) # zapisky, pl, ucebnice, prezentace...
     author = db.Column(db.String(100)) # autor - default ten kdo nahrava
