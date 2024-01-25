@@ -373,7 +373,7 @@ input.invalid {
     width: 100%;
     margin-top: .25rem;
     font-size: .875em;
-    color: #dc3545;
+    color: var(--alert-danger-text-color);
 }
 /* #endregion forms */
 
@@ -462,7 +462,7 @@ footer p {
     }
 
     .topnav-links a {
-        text-transform: capitalize;
+        text-transform: none;
     }
 
     .topnav.responsive .topnav-links {
@@ -472,7 +472,7 @@ footer p {
         position: fixed;
         right: 0;
         background-color: var(--secondary-color);
-        border-radius: 20px;
+        border-radius: var(--border-radius);
         z-index: 10;
         overflow: hidden;
     }

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+{% endblock %}
+
+
+{% block body %}
+
+<input type="text" class="search-input" placeholder="Hledat" name="q" hx-get="{{ url_for('basic_search_query') }}" hx-trigger="keyup changed delay:400ms" hx-target="#results">
+
+<span id="no-results" style="visibility: hidden;">Žádné výsledky</span>
+
+<div id="results">
+    
+</div>
+
+<script>
+    document.getElementById('search').classList.add('active');
+</script>
+{% endblock %}

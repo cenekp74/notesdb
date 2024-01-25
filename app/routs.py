@@ -78,6 +78,18 @@ def add_item():
         form.author.data = current_user.name
     return render_template('add_item.html', form=form)
 
+@app.route('/search/basic/query')
+def basic_search_query():
+    q = request.args.get('q')
+    results = []
+    if q:
+        if len(q) > 1:
+            results.extend(Item.query.filter(Item.name.icontains(q)))
+    return render_template('search_result.html', results=results, q=q)
+
+@app.route('/search')
+def search():
+    return render_template('search.html')
 
 #region auth
 @app.route('/login', methods=['GET', 'POST'])
