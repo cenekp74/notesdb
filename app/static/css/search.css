@@ -33,7 +33,7 @@ body {
     padding: .7rem;
     padding-bottom: .2rem;
     border-radius: var(--border-radius);
-    height: 10rem;
+    height: 12rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -67,15 +67,27 @@ body {
     display: grid;
     width: 100%;
     gap: 1rem;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
+    #search-results {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 800px) {
     .search-input {
         width: 100%;
     }
 
     #search-results {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #search-results {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
