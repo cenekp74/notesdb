@@ -17,6 +17,8 @@ body {
     --alert-success-text-color: #abdbaf;
     --alert-danger-text-color: #dbabab;
     --table-hover-color: rgba(120, 173, 182, 0.2);
+    --item-color: #2a272c;
+    --item-outline-color: var(--secondary-color);
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--bg-color);
@@ -207,6 +209,54 @@ small {
     padding: 5px;
 }
 /* #endregion profileview */
+
+/* #region items */
+.item {
+    background: var(--item-color);
+    outline: 1px solid var(--item-outline-color);
+    text-align: left;
+    padding: .7rem;
+    padding-bottom: .2rem;
+    border-radius: var(--border-radius);
+    height: 12rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.item-box {
+    text-decoration: none;
+    color: var(--text-color);
+}
+.item-box:hover {
+    cursor: pointer;
+    color: var(--text-color);
+}
+.item-box:visited {
+    color: var(--text-color);
+}
+
+.item-name {
+    font-size: 150%;
+    margin-bottom: auto;
+}
+
+.item-details {
+    font-size: 75%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: .5rem;
+    border-top: 1px solid var(--disabled-text-color);
+}
+
+.items-container {
+    display: grid;
+    width: 100%;
+    gap: 1rem;
+    margin-top: 3rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* #endregion items */
 
 /* #region itemview */
 .item-view {
@@ -568,6 +618,9 @@ footer p {
     }
     .item-view {
         width: 90%;
+    }
+    .items-container {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 
