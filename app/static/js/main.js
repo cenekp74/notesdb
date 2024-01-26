@@ -10,7 +10,8 @@ function topnav_drop() {
     if (topnav.className === "topnav") {
         topnav.className += " responsive";
         disableanim = false;
-        animateHeight(0, topnav_links.scrollHeight, topnav_links);
+        animateHeight(0, topnav_links.scrollHeight, topnav_links)
+        sleep(320).then(() => {topnav_links.style.height = "auto";});
     } else {
         var icon = document.getElementById("icon");
         icon.className = "fa fa-bars"
@@ -24,6 +25,8 @@ function hide_topnav() {
     var topnav = document.getElementById("topnav");
     var topnav_links = document.getElementById("topnav-links");
     var icon = document.getElementById("icon");
+    var accountDropdown = document.getElementsByClassName("account-dropdown-content")[0];
+    accountDropdown.classList.remove('dropped')
     icon.className = "fa fa-bars"
     disableanim = true
     topnav_links.style.height = "auto";
@@ -54,4 +57,9 @@ function animateHeight(start, target, element) {
 
 function setParentDisplayNone(element) {
     element.parentNode.style.display = 'none';
+}
+
+function toggleAccountDropdown() {
+    element = document.getElementsByClassName('account-dropdown-content')[0];
+    element.classList.toggle('dropped');
 }

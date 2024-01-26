@@ -285,7 +285,6 @@ small {
     width: 100vw;
 }
 .topnav {
-    overflow: hidden;
     background-color: var(--secondary-color);
     align-items: center;
     display: flex;
@@ -368,8 +367,34 @@ small {
     right: 2px;
 }
 
-.account-control a {
-    text-transform: capitalize;
+.topnav:not(.responsive) .account-control a {
+    text-transform: none;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.account-dropdown-content {
+    display: none;
+    z-index: 2;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+}
+
+.responsive .account-dropdown-content.dropped {
+    display: block;
+}
+
+.topnav:not(.responsive) .account-dropdown-content.dropped  {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    display: block;
+    width: min-content;
+    min-width: 77px;
+}
+.account-dropdown-content.dropped a {
+    margin-right: 0;
+    width: 100%;
 }
 
 /* #endregion topnav*/
@@ -534,7 +559,6 @@ footer p {
 
     .topnav.responsive a {
         float: none;
-        display: block;
         text-align: left;
     }
     .topnav.responsive .topnav-links a {
