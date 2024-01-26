@@ -2,6 +2,7 @@
 <a class="item-box" href="{{ url_for('view_item', item_id=item.id) }}">
     <div class="item">
         <div class="item-name">{{ item.name }}</div>
+        <div>{{ item.subject }}</div>
         <small>{{ item.item_type }}</small>
         <div class="item-details">
             <div>u/{{ item.author_username }}</div>
