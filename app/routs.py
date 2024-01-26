@@ -78,15 +78,15 @@ def add_item():
 
     return render_template('add_item.html', form=form)
 
-@app.route('/search/basic/query')
+@app.route('/search/basic/query', methods=['POST'])
 def basic_search_query():
-    q = request.args.get('q')
+    q = request.form['q']
     results = []
     if q:
         if len(q) > 1:
             results.extend(Item.query.filter(Item.name.icontains(q)))
-    for item in results:
-        item.author_username = User.query.filter_by(id=item.uploaded_by).first().username
+        for item in results:
+            item.author_username = User.query.filter_by(id=item.uploaded_by).first().username
     return render_template('search_result.html', results=results, q=q)
 
 @app.route('/search')
