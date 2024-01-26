@@ -1,5 +1,5 @@
 {% for item in results %}
-<a class="item-box" href="#">
+<a class="item-box" href="{{ url_for('view_item', item_id=item.id) }}">
     <div class="item">
         <div class="item-name">{{ item.name }}</div>
         <small>{{ item.item_type }}</small>

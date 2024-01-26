@@ -124,6 +124,8 @@ a mark {
     line-height: 2rem;
     margin-right: 5px;
     cursor: pointer;
+    padding-right: 2px;
+    padding-left: 3px;
 }
 
 .text-danger {
@@ -555,6 +557,9 @@ footer p {
     .container-form {
         width: 90%;
     }
+    .item-view {
+        width: 90%;
+    }
 }
 
 @media screen and (max-width: 440px) {
@@ -563,5 +568,8 @@ footer p {
     }
     .content {
         min-width: 100vw;
+    }
+    .item-view {
+        width: 97%;
     }
 }
