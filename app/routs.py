@@ -46,6 +46,13 @@ def account():
     pp = url_for('static', filename='pp/' + current_user.pp)
     return render_template('account.html', pp=pp, form=form, user=current_user)
 
+@app.route('/item/<item_id>')
+def view_item(item_id):
+    item = Item.query.get(int(item_id))
+    if not item: abort(404)
+    item.author_username = User.query.filter_by(id=item.uploaded_by).first().username
+    return render_template('item.html', item=item)
+
 @app.route('/add', methods=['GET', 'POST'])
 def add_item():
     if not current_user.is_authenticated:

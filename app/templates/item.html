@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+
+<div class="item-view">
+    <h2>{{ item.name }}</h2>
+    <table>
+        <tr>
+            <td><b>Typ:</b></td>
+            <td style="text-transform: lowercase;">{{ item.item_type }}</td>
+        </tr>
+        <tr>
+            <td><b>Autor:</b></td>
+            <td><a href="#">{{ item.author_username }}</a></td>
+        </tr>
+        <tr>
+            <td><b>Tagy:</b></td>
+            <td>{{ item.tags }}</td>
+        </tr>
+        <tr>
+            <td><b>Předmět:</b></td>
+            <td style="text-transform: lowercase;">{{ item.subject }}</td>
+        </tr>
+        {% if item.prof %}
+        <tr>
+            <td><b>Profesor:</b></td>
+            <td>{{ item.prof }}</td>
+        </tr>
+        {% endif %}
+    </table>
+    <br>
+    <br>
+    {% if item.note %}
+    <div>
+        {{ item.note }}
+    </div>
+    <br>
+    <br>
+    {% endif %}
+    <div>
+        <b>Soubory:</b><br>
+        <ul style="list-style: none;">
+            {% for filename in item.filenames.split(';') %}
+            <li><a style="text-decoration: none;" href="{{ url_for('static', filename='/items/{}/{}'.format(item.folder, filename)) }}">{{ filename }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
