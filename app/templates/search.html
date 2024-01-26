@@ -8,7 +8,7 @@
 
 {% block body %}
 
-<input style="font-family:Arial, FontAwesome" type="text" class="search-input" placeholder="&#xF002" name="q" hx-get="{{ url_for('basic_search_query') }}" hx-trigger="keyup changed delay:400ms" hx-target="#search-results">
+<input type="text" class="search-input" name="q" hx-get="{{ url_for('basic_search_query') }}" hx-trigger="load, keyup changed delay:400ms" hx-target="#search-results">
 
 <span id="no-results" style="visibility: hidden;">Žádné výsledky</span>
 

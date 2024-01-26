@@ -1,7 +1,12 @@
 {% for item in results %}
-<a href="#" class="item">
-    <div class="item-name">{{ item.name }}</div>
-    <small>{{ item.item_type }}</small>
-    <div class="item-date-uploaded">{{ item.datetime_uploaded.date() }}</div>
+<a class="item-box" href="#">
+    <div class="item">
+        <div class="item-name">{{ item.name }}</div>
+        <small>{{ item.item_type }}</small>
+        <div class="item-details">
+            <div>u/{{ item.author_username }}</div>
+            <div>{{ item.datetime_uploaded.date() }}</div>
+        </div>
+    </div>  
 </a>
 {% endfor %}
