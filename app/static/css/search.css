@@ -93,6 +93,17 @@ body {
     grid-template-columns: repeat(4, 1fr);
 }
 
+
+
+.indicator {
+    display:none;
+    margin-bottom: 1rem;
+    height: 2rem;
+}
+.htmx-request.indicator {
+    display: inline;
+}
+
 @media screen and (max-width: 1000px) {
     #search-results {
         grid-template-columns: repeat(3, 1fr);
