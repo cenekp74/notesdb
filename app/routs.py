@@ -9,7 +9,6 @@ import secrets
 import os
 from PIL import Image
 from app.utils import generate_unique_folder_hex
-import time
 
 @app.route('/')
 @app.route('/index')
@@ -45,6 +44,13 @@ def account():
         form.name.data = current_user.name
     pp = url_for('static', filename='pp/' + current_user.pp)
     return render_template('account.html', pp=pp, form=form, user=current_user)
+
+@app.route('/u/<username>')
+def user(username):
+    user = User.query.filter_by(username=username).first()
+    if not user: abort(404)
+    my = True if current_user.id == user.id else False 
+    return render_template('profile.html', user=user, my=my)
 
 @app.route('/item/<item_id>')
 def view_item(item_id):

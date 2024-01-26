@@ -168,12 +168,14 @@ small {
     margin-right: 1rem;
     position: relative;
     flex: 40%;
+    min-width: 300px;
 }
 
 .profile-view.pp-image-container {
     display: flex;
     justify-content: center;
     border-bottom: 1px solid var(--text-color);
+    position: relative;
 }
 
 .profile-view.pp-image {
@@ -196,6 +198,13 @@ small {
     border-radius: 50%;
     margin-left: 90px;
     top: 100px;
+}
+
+.profile-view a.account-link {
+    position: absolute;
+    bottom: 3px;
+    left: 0;
+    padding: 5px;
 }
 /* #endregion profileview */
 

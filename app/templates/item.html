@@ -15,7 +15,7 @@
         </tr>
         <tr>
             <td><b>Autor:</b></td>
-            <td><a href="#">{{ item.author_username }}</a></td>
+            <td><a href="{{ url_for('user', username=item.author_username) }}">{{ item.author_username }}</a></td>
         </tr>
         <tr>
             <td><b>Tagy:</b></td>

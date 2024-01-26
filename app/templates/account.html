@@ -12,6 +12,7 @@
     <div class="profile-view profile-container">
         <div class="profile-view pp-image-container">
             <img onclick="openPpImageDialog()" class="profile-view pp-image cursor-pointer" src="{{ pp }}">
+            <a class="account-link button-link" href="{{ url_for('user', username=user.username) }}">Veřejný profil</a>
             <i onclick="openPpImageDialog()" class="fa-solid fa-image cursor-pointer"></i>
         </div>
         <div class="profile-view profile-details">
