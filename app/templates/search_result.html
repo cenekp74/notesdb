@@ -1,6 +1,7 @@
 {% for item in results %}
-<div class="item">
-    <div>{{ item.name }}</div>
+<a href="#" class="item">
+    <div class="item-name">{{ item.name }}</div>
     <small>{{ item.item_type }}</small>
-</div>
+    <div class="item-date-uploaded">{{ item.datetime_uploaded.date() }}</div>
+</a>
 {% endfor %}

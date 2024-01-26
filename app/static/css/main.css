@@ -153,6 +153,10 @@ input[type=file] {
     min-width: 75%;
 }
 
+small {
+    text-transform: lowercase;
+}
+
 /* #region profileview */
 /* zobrazeni profilu bud v account.html nebo v profile.html (to zatim neni vytvoreny) */
 
