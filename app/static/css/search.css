@@ -1,0 +1,29 @@
+body {
+    --search-result-color: #37363e;
+    --search-bar-hover-color: #303134;
+}
+
+.search-input {
+    margin-top: 3rem;
+    line-height: 2rem;
+    width: 50%;
+    min-width: 320px;
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    text-indent: 3px;
+}
+
+.search-input:focus {
+    outline-width: 0;
+    outline: none;
+}
+
+.search-input:hover {
+    background-color: var(--search-bar-hover-color);
+}
+
+.item {
+    background: var(--search-result-color);
+}

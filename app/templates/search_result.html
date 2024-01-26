@@ -1,3 +1,6 @@
-{% for result in results %}
-<span>{{ result.name }}</span>
+{% for item in results %}
+<div class="item">
+    <div>{{ item.name }}</div>
+    <small>{{ item.item_type }}</small>
+</div>
 {% endfor %}
