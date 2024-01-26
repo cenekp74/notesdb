@@ -48,10 +48,9 @@ class UpdateaccForm(FlaskForm):
                 raise ValidationError('Email je již používán')
             
 class ItemForm(FlaskForm):
-    name = StringField('Název', validators=[DataRequired(), Length(min=4, max=30)])
-    files = MultipleFileField('Soubory', validators=[FileRequired(), FileSize(max_size=30000000)])
+    name = StringField('Název', validators=[DataRequired(), Length(min=4, max=150)])
+    files = MultipleFileField('Soubory', validators=[FileRequired(message='Prosím nahrajte soubor'), FileSize(max_size=10**9, message='Soubor je příliš velký')])
     item_type = SelectField('Typ', choices=VALID_ITEM_TYPES, validators=[DataRequired()])
-    author = StringField('Autor', validators=[Length(min=2, max=100)])
     tags = StringField('Tagy (oddělené mezerou)', validators=[Length(max=200)])
     prof = StringField('Profesor', validators=[Length(max=100)])
     note = TextAreaField('Poznámky')

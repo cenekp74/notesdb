@@ -63,7 +63,6 @@ def add_item():
             name = form.name.data,
             folder = folder,
             item_type = form.item_type.data,
-            author = form.author.data,
             tags = form.tags.data,
             prof = form.prof.data,
             datetime_uploaded = datetime.datetime.now(),
@@ -74,8 +73,9 @@ def add_item():
         )
         db.session.add(item)
         db.session.commit()
-    elif request.method == 'GET':
-        form.author.data = current_user.name
+
+        return redirect(url_for('index'))
+
     return render_template('add_item.html', form=form)
 
 @app.route('/search/basic/query')

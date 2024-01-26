@@ -20,11 +20,10 @@ class User(db.Model, UserMixin):
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30), nullable=False)
+    name = db.Column(db.String(150), nullable=False)
     folder = db.Column(db.String(6), nullable=False, unique=True)
     filenames = db.Column(db.String, nullable=False) # filenames separated by ;
     item_type = db.Column(db.String(10), nullable=False) # zapisky, pl, ucebnice, prezentace...
-    author = db.Column(db.String(100)) # autor - default ten kdo nahrava
     tags = db.Column(db.String(200)) # tagy oddeleny proste mezerou
     prof = db.Column(db.String(100)) # ucitel
     datetime_uploaded = db.Column(db.DateTime)
