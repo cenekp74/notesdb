@@ -8,13 +8,13 @@
 
 {% block body %}
 
-<form class="search-bar" hx-post="{{ url_for('basic_search_query') }}" hx-target="#search-results" hx-indicator="#spinner">
+<form class="search-bar" hx-post="{{ url_for('basic_search_query') }}" hx-target="#search-results" hx-indicator="#spinner" hx-trigger="submit, load">
     <input type="text" class="search-input" name="q">
     <button class="fa fa-search" type="submit"></button>
     
 </form>
 
-<span id="no-results" style="visibility: hidden;">Žádné výsledky</span>
+<span id="no-results" style="visibility: hidden;margin-top: 1rem;">Žádné výsledky</span>
 <img id="spinner" class="indicator" src="{{ url_for('static', filename='/img/spinner.svg') }}">
 
 <div id="search-results">
