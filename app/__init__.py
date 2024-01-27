@@ -28,4 +28,7 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 
+from flask_migrate import Migrate
+migrate = Migrate(app, db)
+
 from app import routs
