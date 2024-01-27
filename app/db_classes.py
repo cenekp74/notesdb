@@ -20,20 +20,24 @@ class User(db.Model, UserMixin):
     admin = db.Column(db.Integer, nullable=False, default=0)
     confirmed = db.Column(db.Boolean, default=False)
 
-    def generate_confirmation_token(self, expiration=3600):
-        s = Serializer(current_app.config['SECRET_KEY'], expiration)
-        return s.dumps({'confirm': self.id}).decode('utf-8')
-    def confirm(self, token):
+    def generate_confirmation_token(self):
+        s = Serializer(current_app.config['SECRET_KEY'])
+        return s.dumps(self.email, salt=current_app.config["SECURITY_PASSWORD_SALT"])
+    
+    def confirm(self, token, expiration=3600):
         s = Serializer(current_app.config['SECRET_KEY'])
         try:
-            data = s.loads(token.encode('utf-8'))
+            email = s.loads(
+                token, salt=current_app.config["SECURITY_PASSWORD_SALT"], max_age=expiration
+            )
+            if not email == self.email:
+                return False
+            self.confirmed = True
+            db.session.add(self)
+            return True
         except:
             return False
-        if data.get('confirm') != self.id:
-            return False
-        self.confirmed = True
-        db.session.add(self)
-        return True
+        
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)

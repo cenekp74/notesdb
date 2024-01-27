@@ -1,0 +1,5 @@
+Ahoj {{ user.username }}!
+
+Pro potvrzení účtu klikni na tento odkaz:
+
+{{ url_for('confirm_account', token=token, _external=True) }}

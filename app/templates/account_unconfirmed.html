@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+
+<br style="margin-top: 1rem;">
+Váš účet nebyl aktivován. Pro aktivování účtu prosím klikněte na odkaz v emailu.
+<a href="{{ url_for('resend_confirmation') }}">Poslat email znovu</a>
+
+{% endblock %}

@@ -13,6 +13,7 @@ VALID_SUBJECTS = ['', 'český jazyk a literatura', 'matematika', 'biologie', 'g
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5e72ba27fc6a863eed13c27e6750bd25ab0be9ff55ac0e34823d966c1ce4896026992f2639857117'
+app.config['SECURITY_PASSWORD_SALT'] = os.getenv('SECURITY_PASSWORD_SALT')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
@@ -20,6 +21,8 @@ app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+app.config['MAIL_SENDER'] = 'notesdb.cz@gmail.com'
+app.config['MAIL_SUBJECT_PREFIX'] = 'NotesDB '
 
 from flask_mail import Mail
 mail = Mail(app)

@@ -4,6 +4,7 @@ from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
 from app.forms import LoginForm, RegistrationForm, UpdateaccForm, ItemForm
 from app.db_classes import User, Item
+from app.mail import send_email
 import datetime
 import secrets
 import os
@@ -64,6 +65,8 @@ def add_item():
     if not current_user.is_authenticated:
         flash('Pro přidání příspěvku se přihlašte')
         return redirect(url_for('login'))
+    if not current_user.confirmed:
+        return redirect(url_for('account_unconfirmed'))
     form = ItemForm()
     if form.validate_on_submit():
         filenames = [secure_filename(file.filename) for file in form.files.data]
@@ -136,7 +139,36 @@ def register():
         user = User(username=form.username.data, email=form.email.data, password=hashed_pass, account_created=datetime.datetime.now(), name=form.username.data)
         db.session.add(user)
         db.session.commit()
-        flash(f'Účet pro {form.username.data} byl úspěšně vytvořen', 'success')
+        token = user.generate_confirmation_token()
+        send_email(user.email, 'Potvrzení účtu', 'confirm_account', user=user, token=token)
+        flash(f'Na email adresu {user.email} byl odeslán mail. Pro aktivaci účtu klikněte na link v mailu.', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', form=form)
+
+@app.route('/confirm/<token>')
+@login_required
+def confirm_account(token):
+    if current_user.confirmed:
+        return redirect(url_for('index'))
+    if current_user.confirm(token):
+        db.session.commit()
+        flash('Váš účet byl úspěšně aktivován!', 'success')
+    else:
+        flash('Aktivační odkaz je neplatný nebo příliš starý', 'danger')
+        return redirect(url_for('account_unconfirmed'))
+    return redirect(url_for('index'))
+
+@app.route('/confirm')
+@login_required
+def resend_confirmation():
+    token = current_user.generate_confirmation_token()
+    send_email(current_user.email, 'Potvrzení účtu', 'confirm_account', user=current_user, token=token)
+    flash(f'Nový email byl odeslán na adresu {current_user.email}')
+    return redirect(url_for('index'))
+
+@app.route('/unconfirmed')
+def account_unconfirmed():
+    if current_user.is_anonymous or current_user.confirmed:
+        return redirect(url_for('index'))
+    return render_template('account_unconfirmed.html')
 #endregion auth
