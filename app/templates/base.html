@@ -20,12 +20,11 @@
                 <a id="search" href="{{ url_for('search') }}">Vyhledávání</a>
                 <div class="account-control">
                     {% if current_user.is_authenticated %}
-                    <!-- <a id="account" href="{{ url_for('account') }}">Účet</a> -->
                     <div class="account-dropdown">
                         <a onclick="toggleAccountDropdown()">Účet <i class="fa fa-caret-down"></i></a>
                         <div class="account-dropdown-content">
-                            <a id="account" href="{{ url_for('account') }}">Účet</a>
-                            <a>Test</a>
+                            <a id="account" href="{{ url_for('account') }}">Nastavení</a>
+                            <a href="{{ url_for('logout') }}">Odhlásit se</a>
                         </div>
                     </div>
                     {% else %}

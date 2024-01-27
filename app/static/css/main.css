@@ -390,9 +390,10 @@ small {
     top: 50px;
     right: 0;
     display: block;
-    width: min-content;
-    min-width: 77px;
+    width: max-content;
+    max-width: 120px;
 }
+
 .account-dropdown-content.dropped a {
     margin-right: 0;
     width: 100%;
