@@ -101,6 +101,7 @@ a mark {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 20px;
 }
 
 .alert {
