@@ -2,6 +2,7 @@ from flask import render_template, url_for, send_from_directory, request, redire
 from werkzeug.utils import secure_filename
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
+from app import login_manager
 from app.forms import LoginForm, RegistrationForm, UpdateaccForm, ItemForm
 from app.db_classes import User, Item
 from app.mail import send_email
@@ -10,6 +11,7 @@ import secrets
 import os
 from PIL import Image
 from app.utils import generate_unique_folder_hex
+from app.decorators import confirmation_required
 
 @app.route('/')
 @app.route('/index')
@@ -61,12 +63,11 @@ def view_item(item_id):
     return render_template('item.html', item=item)
 
 @app.route('/add', methods=['GET', 'POST'])
+@confirmation_required
 def add_item():
     if not current_user.is_authenticated:
         flash('Pro přidání příspěvku se přihlašte')
         return redirect(url_for('login'))
-    if not current_user.confirmed:
-        return redirect(url_for('account_unconfirmed'))
     form = ItemForm()
     if form.validate_on_submit():
         filenames = [secure_filename(file.filename) for file in form.files.data]
@@ -111,6 +112,10 @@ def search():
     return render_template('search.html')
 
 #region auth
+@login_manager.unauthorized_handler
+def unauthorized_callback():
+    return redirect('/login?next=' + request.path)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -141,7 +146,7 @@ def register():
         db.session.commit()
         token = user.generate_confirmation_token()
         send_email(user.email, 'Potvrzení účtu', 'confirm_account', user=user, token=token)
-        flash(f'Na email adresu {user.email} byl odeslán mail. Pro aktivaci účtu klikněte na link v mailu.', 'success')
+        flash(f'Na adresu {user.email} byl odeslán mail. Pro aktivaci účtu klikněte na link v mailu.', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
