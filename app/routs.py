@@ -19,9 +19,8 @@ def index():
     return render_template('index.html')
 
 @app.route('/account', methods=['GET', 'POST'])
+@login_required
 def account():
-    if not current_user.is_authenticated:
-        return redirect(url_for('login'))
     form = UpdateaccForm()
     if form.validate_on_submit():
         if form.pp.data:
@@ -63,11 +62,9 @@ def view_item(item_id):
     return render_template('item.html', item=item)
 
 @app.route('/add', methods=['GET', 'POST'])
+@login_required
 @confirmation_required
 def add_item():
-    if not current_user.is_authenticated:
-        flash('Pro přidání příspěvku se přihlašte')
-        return redirect(url_for('login'))
     form = ItemForm()
     if form.validate_on_submit():
         filenames = [secure_filename(file.filename) for file in form.files.data]
@@ -114,6 +111,7 @@ def search():
 #region auth
 @login_manager.unauthorized_handler
 def unauthorized_callback():
+    flash('Pro zobrazení této stránky se přihlašte', 'danger')
     return redirect('/login?next=' + request.path)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -125,6 +123,8 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
+            dest = request.args.get('next')
+            if dest: return redirect(dest)
             return redirect('/')
         flash('Přihlášení se nezdařilo - zkontrolujte email a heslo', 'danger')
     return render_template('login.html', form=form)
