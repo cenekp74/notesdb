@@ -146,14 +146,6 @@ a mark {
     border-radius: 50%;
 }
 
-input[type=file] {
-    color: var(--text-color);
-    padding: 5px;
-    background: var(--form-field-color);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--disabled-text-color);
-}
-
 .account-page-container {
     width: fit-content;
     min-width: 75%;
@@ -260,8 +252,6 @@ small {
 .items-container.items-container-full {
     grid-template-columns: repeat(4, 1fr);
 }
-
-
 
 /* #endregion items */
 
@@ -451,6 +441,15 @@ select {
     background-color: var(--form-field-color);
     color: var(--text-color);
     border-radius: var(--border-radius);
+    border: 1px solid var(--disabled-text-color);
+}
+
+input[type=file] {
+    color: var(--text-color);
+    padding: 5px;
+    background: var(--form-field-color);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--disabled-text-color);
 }
 
 .form-group:not(:last-child) {
