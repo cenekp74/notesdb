@@ -114,7 +114,7 @@ def edit_item(item_id):
     if item.uploaded_by != current_user.id: abort(403)
     if not item: abort(404)
 
-    form = ItemEditForm()
+    form = ItemEditForm(name=item.name, item_type=item.item_type, tags=item.tags, prof=item.prof, note=item.note, subject=item.subject)
     form.remove_files.choices = filenames = item.filenames.split(";")
 
     if form.validate_on_submit():
@@ -149,6 +149,15 @@ def edit_item(item_id):
                 if form.add_files.data:
                     for file in form.add_files.data:
                         file.save(os.path.join(app.root_path, 'static/items', item.folder, secure_filename(file.filename)))
+        item.name = form.name.data
+        item.item_type = form.item_type.data
+        item.tags = form.tags.data
+        item.prof = form.prof.data
+        item.note = form.note.data
+        item.subject = form.subject.data
+
+        item.note += f"\n --- \n Editováno {datetime.date.today()}"
+
         db.session.commit()
         return redirect(url_for('edit_item', item_id=item_id))
     return render_template('edit_item.html', form=form)

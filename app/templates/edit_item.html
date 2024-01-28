@@ -11,6 +11,7 @@
     <form method="POST" action="" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <fieldset>
+            {{ render_field(form.name) }}
             <div class="form-group">
                 {{ form.add_files.label }}
                 {{ form.add_files(class="form-control-file") }}
@@ -21,7 +22,21 @@
                     {% endfor %}
                 {% endif %}
             </div>
-            {{ render_field(form.remove_files) }}
+            <div class="form-group">
+                {{ form.remove_files.label }} <br>
+                {{ form.remove_files(class="form-control") }}
+                {% if form.remove_files.errors %}
+                    <br>
+                    {% for error in form.remove_files.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {{ render_field(form.item_type) }}
+            {{ render_field(form.tags) }}
+            {{ render_field(form.prof) }}
+            {{ render_field(form.note) }}
+            {{ render_field(form.subject) }}
         </fieldset>
         <div class="form-group">
             {{ form.submit(class="button-link form-submit") }}

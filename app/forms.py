@@ -58,6 +58,12 @@ class ItemForm(FlaskForm):
     submit = SubmitField('Potvrdit')
 
 class ItemEditForm(FlaskForm):
+    name = StringField('Název', validators=[DataRequired(), Length(min=4, max=150)])
     remove_files = SelectMultipleField('Odstranit soubory')
     add_files = MultipleFileField('Přidat soubory', validators=[FileSize(max_size=10**9, message='Soubor je příliš velký')])
+    item_type = SelectField('Typ', choices=VALID_ITEM_TYPES, validators=[DataRequired()])
+    tags = StringField('Tagy (oddělené mezerou)', validators=[Length(max=200)])
+    prof = StringField('Profesor', validators=[Length(max=100)])
+    note = TextAreaField('Poznámky')
+    subject = SelectField('Předmět', choices=VALID_SUBJECTS)
     submit = SubmitField('Potvrdit')
