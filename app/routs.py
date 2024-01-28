@@ -18,6 +18,10 @@ from app.decorators import confirmation_required
 def index():
     return render_template('index.html')
 
+@app.route('/favicon.ico')
+def send_favicon():
+    return send_from_directory('static/img', 'favicon.ico')
+
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():

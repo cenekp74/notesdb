@@ -1,5 +1,3 @@
 Ahoj {{ user.username }}!
 
-Pro potvrzení účtu klikni na tento odkaz:
-
-{{ url_for('confirm_account', token=token, _external=True) }}
+Pro potvrzení účtu klikni na <a href="{{ url_for('confirm_account', token=token, _external=True) }}">tento odkaz</a>
