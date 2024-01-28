@@ -66,7 +66,9 @@ def user(username):
 
 @app.route('/item/<item_id>')
 def view_item(item_id):
-    item = Item.query.get(int(item_id))
+    if not item_id.isdigit(): abort(404)
+    item_id = int(item_id)
+    item = Item.query.get(item_id)
     if not item: abort(404)
     item.author_username = User.query.filter_by(id=item.uploaded_by).first().username
     return render_template('item.html', item=item)
@@ -105,7 +107,11 @@ def add_item():
 @app.route('/edit_item/<item_id>', methods=['GET', 'POST'])
 @login_required
 def edit_item(item_id):
-    item = Item.query.get(int(item_id))
+    if not item_id.isdigit(): abort(404)
+    item_id = int(item_id)
+    item = Item.query.get(item_id)
+    if not item: abort(404)
+    if item.uploaded_by != current_user.id: abort(403)
     if not item: abort(404)
 
     form = ItemEditForm()
