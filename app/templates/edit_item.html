@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 {{ form.remove_files.label }} <br>
-                {{ form.remove_files(class="form-control") }}
+                {{ form.remove_files(class="form-select-multiple") }}
                 {% if form.remove_files.errors %}
                     <br>
                     {% for error in form.remove_files.errors %}
@@ -43,5 +43,22 @@
         </div>
     </form>
 </div>
+
+<script>
+    const multiSelectWithoutCtrl = ( elemSelector ) => {
+        let options = [].slice.call(document.querySelectorAll(`${elemSelector} option`));
+        options.forEach(function (element) {
+            element.addEventListener("mousedown", 
+                function (e) {
+                    e.preventDefault();
+                    element.parentElement.focus();
+                    this.selected = !this.selected;
+                    return false;
+                }, false );
+        });
+    }
+
+multiSelectWithoutCtrl('.form-select-multiple')
+</script>
 
 {% endblock %}
