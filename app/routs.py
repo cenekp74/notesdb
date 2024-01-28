@@ -3,7 +3,7 @@ from werkzeug.utils import secure_filename
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
 from app import login_manager
-from app.forms import LoginForm, RegistrationForm, UpdateaccForm, ItemForm
+from app.forms import LoginForm, RegistrationForm, UpdateaccForm, ItemForm, ItemEditForm
 from app.db_classes import User, Item
 from app.mail import send_email
 import datetime
@@ -100,8 +100,52 @@ def add_item():
         db.session.commit()
 
         return redirect(url_for('index'))
-
     return render_template('add_item.html', form=form)
+
+@app.route('/edit_item/<item_id>', methods=['GET', 'POST'])
+@login_required
+def edit_item(item_id):
+    item = Item.query.get(int(item_id))
+    if not item: abort(404)
+
+    form = ItemEditForm()
+    form.remove_files.choices = filenames = item.filenames.split(";")
+
+    if form.validate_on_submit():
+        if form.remove_files.data or form.add_files.data:
+            new_filenames = ""
+            new_filenames += item.filenames
+            if form.remove_files.data:
+                filenames = item.filenames.split(";")
+                for filename in form.remove_files.data:
+                    if filename not in filenames: continue
+                    filenames.remove(filename)
+                if len(filenames) > 0:
+                    new_filenames = ";".join(filenames)
+                else:
+                    new_filenames = ''
+            if form.add_files.data:
+                filenames = [secure_filename(file.filename) for file in form.add_files.data if file.filename not in new_filenames]
+                filenames_string = ";".join(filenames)
+                if len(new_filenames) > 0 and len(filenames) > 0:
+                    print('test')
+                    new_filenames += ";"
+                new_filenames += filenames_string
+            if not new_filenames:
+                flash('Příspěvek musí mít alespoň jeden soubor. Změny nebyly uloženy.')
+                return render_template('edit_item.html', form=form)
+            else:
+                item.filenames = new_filenames
+                if form.remove_files.data:
+                    filenames = item.filenames.split(";")
+                    for filename in form.remove_files.data:
+                        os.remove(os.path.join(app.root_path, 'static/items', item.folder, secure_filename(filename)))
+                if form.add_files.data:
+                    for file in form.add_files.data:
+                        file.save(os.path.join(app.root_path, 'static/items', item.folder, secure_filename(file.filename)))
+        db.session.commit()
+        return redirect(url_for('edit_item', item_id=item_id))
+    return render_template('edit_item.html', form=form)
 
 @app.route('/search/basic/query', methods=['POST'])
 def basic_search_query():

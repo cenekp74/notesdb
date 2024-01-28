@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+
+{% from "formutils.html" import render_field %}
+<div class="container-form" style="max-width: 650px;">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <div class="form-group">
+                {{ form.add_files.label }}
+                {{ form.add_files(class="form-control-file") }}
+                {% if form.add_files.errors %}
+                    <br>
+                    {% for error in form.add_files.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {{ render_field(form.remove_files) }}
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="button-link form-submit") }}
+        </div>
+    </form>
+</div>
+
+{% endblock %}

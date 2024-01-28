@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired, FileSize, MultipleFileField
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TimeField, IntegerField, ValidationError, SelectField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TimeField, IntegerField, ValidationError, SelectField, TextAreaField, SelectMultipleField
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, NumberRange, Email, Length, EqualTo
 from app.db_classes import User
@@ -55,4 +55,9 @@ class ItemForm(FlaskForm):
     prof = StringField('Profesor', validators=[Length(max=100)])
     note = TextAreaField('Poznámky')
     subject = SelectField('Předmět', choices=VALID_SUBJECTS)
+    submit = SubmitField('Potvrdit')
+
+class ItemEditForm(FlaskForm):
+    remove_files = SelectMultipleField('Odstranit soubory')
+    add_files = MultipleFileField('Přidat soubory', validators=[FileSize(max_size=10**9, message='Soubor je příliš velký')])
     submit = SubmitField('Potvrdit')
