@@ -51,6 +51,12 @@ def account():
     pp = url_for('static', filename='pp/' + current_user.pp)
     return render_template('account.html', pp=pp, form=form, user=current_user)
 
+@app.route('/account/items')
+@login_required
+@confirmation_required
+def my_items():
+    return render_template('my_items.html', user=current_user)
+
 @app.route('/u/<username>')
 def user(username):
     user = User.query.filter_by(username=username).first()

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+
+<h2>Moje příspěvky</h2>
+<div class="items-container items-container-full" style="flex: 60%">
+    {% for item in user.items %}
+    <a class="item-box" href="{{ url_for('view_item', item_id=item.id) }}">
+        <div class="item">
+            <div class="item-name">{{ item.name }}</div>
+            <div>{{ item.subject }}</div>
+            <small>{{ item.item_type }}</small>
+            <div class="item-details">
+                <div></div>
+                <div>{{ item.datetime_uploaded.date() }}</div>
+            </div>
+        </div>  
+    </a>
+    {% endfor %}
+</div>
+
+{% endblock %}
