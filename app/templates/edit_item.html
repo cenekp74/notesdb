@@ -8,7 +8,7 @@
 
 {% from "formutils.html" import render_field %}
 <div class="container-form" style="max-width: 650px;">
-    <form method="POST" action="" enctype="multipart/form-data">
+    <form method="POST" action="" enctype="multipart/form-data" onsubmit="return confirm('Uložit změny?')">
         {{ form.hidden_tag() }}
         <fieldset>
             {{ render_field(form.name) }}

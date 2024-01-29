@@ -57,6 +57,10 @@ class ItemForm(FlaskForm):
     subject = SelectField('Předmět', choices=VALID_SUBJECTS)
     submit = SubmitField('Potvrdit')
 
+    def validate_files(self, files):
+        if len(files.data) > 5:
+            raise ValidationError('Maximalní počet souborů je 5')
+
 class ItemEditForm(FlaskForm):
     name = StringField('Název', validators=[DataRequired(), Length(min=4, max=150)])
     remove_files = SelectMultipleField('Odstranit soubory')

@@ -101,7 +101,8 @@ def add_item():
         db.session.add(item)
         db.session.commit()
 
-        return redirect(url_for('index'))
+        flash('Příspěvek byl přidán', 'success')
+        return redirect(url_for('account'))
     return render_template('add_item.html', form=form)
 
 @app.route('/edit_item/<item_id>', methods=['GET', 'POST'])
@@ -140,6 +141,9 @@ def edit_item(item_id):
             if not new_filenames:
                 flash('Příspěvek musí mít alespoň jeden soubor. Změny nebyly uloženy.')
                 return render_template('edit_item.html', form=form)
+            elif len(new_filenames.split(';')) > 5:
+                flash('Maximalní počet souborů je 5. Změny nebyly uloženy.', 'danger')
+                return render_template('edit_item.html', form=form)
             else:
                 item.filenames = new_filenames
                 if form.remove_files.data:
@@ -159,6 +163,7 @@ def edit_item(item_id):
         item.note += f"\n --- \n Editováno {datetime.date.today()}"
 
         db.session.commit()
+        flash('Změny uloženy')
         return redirect(url_for('edit_item', item_id=item_id))
     return render_template('edit_item.html', form=form)
 
