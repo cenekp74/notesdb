@@ -330,7 +330,7 @@ small {
     transform: translateY(-50%);
 }
 
-.topnav-links a:hover {
+.topnav:not(.responsive) .topnav-links a:hover {
     background-color: var(--text-color);
     transition: 1s ease;
     color: var(--bg-color);
