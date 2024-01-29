@@ -70,8 +70,12 @@ def view_item(item_id):
     item_id = int(item_id)
     item = Item.query.get(item_id)
     if not item: abort(404)
+    my = False
+    if current_user.is_authenticated:
+        if item.uploaded_by == current_user.id:
+            my = True
     item.author_username = User.query.filter_by(id=item.uploaded_by).first().username
-    return render_template('item.html', item=item)
+    return render_template('item.html', item=item, my=my)
 
 @app.route('/add', methods=['GET', 'POST'])
 @login_required
