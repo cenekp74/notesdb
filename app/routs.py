@@ -12,6 +12,7 @@ import os
 from PIL import Image
 from app.utils import generate_unique_folder_hex
 from app.decorators import confirmation_required
+import shutil
 
 @app.route('/')
 @app.route('/index')
@@ -170,6 +171,21 @@ def edit_item(item_id):
         flash('Změny uloženy')
         return redirect(url_for('edit_item', item_id=item_id))
     return render_template('edit_item.html', form=form)
+
+@app.route('/delete_item/<item_id>')
+@login_required
+def delete_item(item_id):
+    if not item_id.isdigit(): abort(404)
+    item_id = int(item_id)
+    item = Item.query.get(item_id)
+    if not item: abort(404)
+    if item.uploaded_by != current_user.id: abort(403)
+    if not item: abort(404)
+    shutil.rmtree(os.path.join(app.root_path, 'static/items', item.folder))
+    db.session.delete(item)
+    db.session.commit()
+    flash('Příspěvek byl smazán', 'success')
+    return redirect(url_for('my_items'))
 
 @app.route('/search/basic/query', methods=['POST'])
 def basic_search_query():
