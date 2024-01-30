@@ -155,6 +155,11 @@ small {
     text-transform: lowercase;
 }
 
+p {
+    line-height: 1.5rem;
+    font-size: 110%;
+}
+
 /* #region profileview */
 /* zobrazeni profilu bud v account.html nebo v profile.html (to zatim neni vytvoreny) */
 
