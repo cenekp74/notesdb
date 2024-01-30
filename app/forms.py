@@ -5,7 +5,7 @@ from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, NumberRange, Email, Length, EqualTo
 from app.db_classes import User
 from flask_login import current_user
-from app import VALID_ITEM_TYPES, VALID_SUBJECTS
+from app import VALID_ITEM_TYPES, VALID_SUBJECTS, VALID_PROFESSORS
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()], render_kw={"placeholder": "email"})
@@ -52,7 +52,7 @@ class ItemForm(FlaskForm):
     files = MultipleFileField('Soubory', validators=[FileRequired(message='Prosím nahrajte soubor'), FileSize(max_size=10**9, message='Soubor je příliš velký')])
     item_type = SelectField('Typ', choices=VALID_ITEM_TYPES, validators=[DataRequired()])
     tags = StringField('Tagy (oddělené mezerou)', validators=[Length(max=200)])
-    prof = StringField('Profesor', validators=[Length(max=100)])
+    prof = SelectField('Profesor', choices=VALID_PROFESSORS)
     note = TextAreaField('Poznámky')
     subject = SelectField('Předmět', choices=VALID_SUBJECTS)
     submit = SubmitField('Potvrdit')
@@ -67,7 +67,7 @@ class ItemEditForm(FlaskForm):
     add_files = MultipleFileField('Přidat soubory', validators=[FileSize(max_size=10**9, message='Soubor je příliš velký')])
     item_type = SelectField('Typ', choices=VALID_ITEM_TYPES, validators=[DataRequired()])
     tags = StringField('Tagy (oddělené mezerou)', validators=[Length(max=200)])
-    prof = StringField('Profesor', validators=[Length(max=100)])
+    prof = SelectField('Profesor', choices=VALID_PROFESSORS)
     note = TextAreaField('Poznámky')
     subject = SelectField('Předmět', choices=VALID_SUBJECTS)
     submit = SubmitField('Potvrdit')
