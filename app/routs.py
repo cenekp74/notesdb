@@ -108,7 +108,7 @@ def add_item():
         db.session.commit()
 
         flash('Příspěvek byl přidán', 'success')
-        return redirect(url_for('account'))
+        return redirect(url_for('my_items'))
     return render_template('add_item.html', form=form)
 
 @app.route('/edit_item/<item_id>', methods=['GET', 'POST'])
@@ -208,6 +208,14 @@ def search_query():
             results = {item for item in results if item.prof == request.form['prof']}
         for item in results:
             item.author_username = User.query.filter_by(id=item.uploaded_by).first().username
+        results = list(results)
+
+        if request.form['sort'] == 'datetime_oldest':
+            results.sort(key=lambda item: item.datetime_uploaded)
+        elif request.form['sort'] == 'datetime_newest':
+            results.sort(key=lambda item: item.datetime_uploaded, reverse=True)
+        elif request.form['sort'] == 'subject':
+            results.sort(key=lambda item: item.subject)
     return render_template('search_result.html', results=results, q=q)
 
 @app.route('/search')

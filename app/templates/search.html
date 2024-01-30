@@ -26,6 +26,11 @@
             {% for subject in subjects %}
             <option value="{{ subject }}">{{ subject }}</option>
             {% endfor %}
+        </select><br><br>
+        Seřadit <select name="sort">
+            <option value="datetime_newest">Od nejmladšího</option>
+            <option value="datetime_oldest">Od nejstaršího</option>
+            <option value="subject">Podle předmětu</option>
         </select>
     </div>
     <button hx-post="{{ url_for('search_query') }}" class="fa fa-search" type="submit"></button>
