@@ -13,6 +13,7 @@ from PIL import Image
 from app.utils import generate_unique_folder_hex
 from app.decorators import confirmation_required
 import shutil
+from app import VALID_SUBJECTS
 
 @app.route('/')
 @app.route('/index')
@@ -201,13 +202,15 @@ def search_query():
                 results.extend(Item.query.filter(Item.filenames.icontains(q)))
             if 'note' in request.form:
                 results.extend(Item.query.filter(Item.note.icontains(q)))
+        if request.form['subject']:
+            results = [item for item in results if item.subject == request.form['subject']]
         for item in results:
             item.author_username = User.query.filter_by(id=item.uploaded_by).first().username
     return render_template('search_result.html', results=results, q=q)
 
 @app.route('/search')
 def search():
-    return render_template('search.html')
+    return render_template('search.html', subjects=VALID_SUBJECTS)
 
 #region auth
 @login_manager.unauthorized_handler

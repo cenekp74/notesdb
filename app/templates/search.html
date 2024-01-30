@@ -15,7 +15,14 @@
         <input type="checkbox" name="name" checked> Název <br>
         <input type="checkbox" name="tags" checked> Tagy <br>
         <input type="checkbox" name="files"> Soubory <br>
-        <input type="checkbox" name="note"> Poznámka
+        <input type="checkbox" name="note"> Poznámka <br>
+        <b>Filtrovat:</b> <br>
+        Profesor <input type="text"  name="prof" checked> <br>
+        Předmět <select name="subject">
+            {% for subject in subjects %}
+            <option value="{{ subject }}">{{ subject }}</option>
+            {% endfor %}
+        </select>
     </div>
     <button hx-post="{{ url_for('search_query') }}" class="fa fa-search" type="submit"></button>
     <button onclick="toggleOptions(event)" class="fa fa-filter"></button>
