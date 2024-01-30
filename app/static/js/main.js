@@ -26,7 +26,9 @@ function hide_topnav() {
     var topnav_links = document.getElementById("topnav-links");
     var icon = document.getElementById("icon");
     var accountDropdown = document.getElementsByClassName("account-dropdown-content")[0];
-    accountDropdown.classList.remove('dropped')
+    if (accountDropdown) {
+        accountDropdown.classList.remove('dropped')
+    }
     icon.className = "fa fa-bars"
     disableanim = true
     topnav_links.style.height = "auto";
