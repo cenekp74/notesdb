@@ -17,7 +17,11 @@
         <input type="checkbox" name="files"> Soubory <br>
         <input type="checkbox" name="note"> Poznámka <br>
         <b>Filtrovat:</b> <br>
-        Profesor <input type="text"  name="prof" checked> <br>
+        Profesor <select name="prof">
+            {% for prof in profs %}
+            <option value="{{ prof }}">{{ prof }}</option>
+            {% endfor %}
+        </select><br>
         Předmět <select name="subject">
             {% for subject in subjects %}
             <option value="{{ subject }}">{{ subject }}</option>

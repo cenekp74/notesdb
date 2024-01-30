@@ -13,7 +13,7 @@ from PIL import Image
 from app.utils import generate_unique_folder_hex
 from app.decorators import confirmation_required
 import shutil
-from app import VALID_SUBJECTS
+from app import VALID_SUBJECTS, VALID_PROFESSORS
 
 @app.route('/')
 @app.route('/index')
@@ -191,26 +191,28 @@ def delete_item(item_id):
 @app.route('/search/query', methods=['POST'])
 def search_query():
     q = request.form['q']
-    results = []
+    results = set()
     if q:
         if len(q) > 1:
             if 'name' in request.form:
-                results.extend(Item.query.filter(Item.name.icontains(q)))
+                results.update(Item.query.filter(Item.name.icontains(q)))
             if 'tags' in request.form:
-                results.extend(Item.query.filter(Item.tags.icontains(q)))
+                results.update(Item.query.filter(Item.tags.icontains(q)))
             if 'files' in request.form:
-                results.extend(Item.query.filter(Item.filenames.icontains(q)))
+                results.update(Item.query.filter(Item.filenames.icontains(q)))
             if 'note' in request.form:
-                results.extend(Item.query.filter(Item.note.icontains(q)))
+                results.update(Item.query.filter(Item.note.icontains(q)))
         if request.form['subject']:
-            results = [item for item in results if item.subject == request.form['subject']]
+            results = {item for item in results if item.subject == request.form['subject']}
+        if request.form['prof']:
+            results = {item for item in results if item.prof == request.form['prof']}
         for item in results:
             item.author_username = User.query.filter_by(id=item.uploaded_by).first().username
     return render_template('search_result.html', results=results, q=q)
 
 @app.route('/search')
 def search():
-    return render_template('search.html', subjects=VALID_SUBJECTS)
+    return render_template('search.html', subjects=VALID_SUBJECTS, profs=VALID_PROFESSORS)
 
 #region auth
 @login_manager.unauthorized_handler
