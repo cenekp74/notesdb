@@ -23,7 +23,8 @@
             {{ form.submit(class="button-link form-submit") }}
         </div>
     </form>
-    <small>Nemáš ještě účet? <a href="{{ url_for('register') }}">Registruj se</a></small>
+    <small>Nemáš ještě účet? <a href="{{ url_for('register') }}">Registruj se</a></small><br>
+    <small><a href="{{ url_for('reset_password') }}">Zapomněli jste heslo? </a></small>
 </div>
 
 <script>

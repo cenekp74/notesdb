@@ -16,8 +16,8 @@
         <div class="topnav" id="topnav">
             <a href="/" class="logo">NotesDB</a>
             <div id="topnav-links" class="topnav-left topnav-links">
-                <a id="add_item" href="{{ url_for('add_item') }}">Přidat příspěvek</a>
                 <a id="search" href="{{ url_for('search') }}">Vyhledávání</a>
+                <a id="add_item" href="{{ url_for('add_item') }}">Přidat příspěvek</a>
                 <div class="account-control">
                     {% if current_user.is_authenticated %}
                     <div class="account-dropdown">
