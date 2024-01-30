@@ -33,7 +33,7 @@
             <option value="subject">Podle předmětu</option>
         </select>
     </div>
-    <button hx-post="{{ url_for('search_query') }}" class="fa fa-search" type="submit"></button>
+    <button hx-post="{{ url_for('search_query') }}" hx-trigger="load" class="fa fa-search" type="submit"></button>
     <button onclick="toggleOptions(event)" class="fa fa-filter"></button>
 </form>
 
