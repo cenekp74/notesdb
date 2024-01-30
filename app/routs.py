@@ -3,7 +3,7 @@ from werkzeug.utils import secure_filename
 from app import app, db, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
 from app import login_manager
-from app.forms import LoginForm, RegistrationForm, UpdateaccForm, ItemForm, ItemEditForm
+from app.forms import LoginForm, RegistrationForm, UpdateaccForm, ItemForm, ItemEditForm, ChangePasswordForm
 from app.db_classes import User, Item
 from app.mail import send_email
 import datetime
@@ -284,6 +284,35 @@ def resend_confirmation():
     send_email(current_user.email, 'Potvrzení účtu', 'confirm_account', user=current_user, token=token)
     flash(f'Nový email byl odeslán na adresu {current_user.email}')
     return redirect(url_for('index'))
+
+@app.route('/reset_password', methods=['POST', 'GET'])
+def reset_password():
+    if request.method == 'POST':
+        email = request.form['email']
+        user = User.query.filter_by(email=email).first()
+        if not user:
+            flash('Se zadaným emailem není propojen žádný účet', 'danger')
+            return redirect(url_for('reset_password'))
+        token = user.generate_confirmation_token()
+        send_email(user.email, 'Reset hesla', 'password_reset', user=user, token=token)
+        flash('Email byl odeslán', 'success')
+    return render_template('password_reset.html')
+
+@app.route('/reset_password/reset/<email>/<token>', methods=['POST', 'GET'])
+def confirm_password_reset(email, token):
+    user = User.query.filter_by(email=email).first()
+    if not user: abort(404)
+    if not user.validate_token(token):
+        flash('Odkaz je neplatný nebo příliš starý', 'danger')
+        return(redirect(url_for('/')))
+    form = ChangePasswordForm()
+    if form.validate_on_submit():
+        hashed_pass = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user.password = hashed_pass
+        db.session.commit()
+        flash('Heslo bylo změněno')
+        return redirect(url_for('login'))
+    return render_template('change_password.html', form=form)
 
 @app.route('/unconfirmed')
 def account_unconfirmed():

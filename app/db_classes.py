@@ -24,6 +24,17 @@ class User(db.Model, UserMixin):
         s = Serializer(current_app.config['SECRET_KEY'])
         return s.dumps(self.email, salt=current_app.config["SECURITY_PASSWORD_SALT"])
     
+    def validate_token(self, token, expiration=3600):
+        s = Serializer(current_app.config['SECRET_KEY'])
+        try:
+            email = s.loads(
+                token, salt=current_app.config["SECURITY_PASSWORD_SALT"], max_age=expiration
+            )
+            if not email == self.email:
+                return False
+            return True
+        except:
+            return False
     def confirm(self, token, expiration=3600):
         s = Serializer(current_app.config['SECRET_KEY'])
         try:

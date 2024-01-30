@@ -71,3 +71,8 @@ class ItemEditForm(FlaskForm):
     note = TextAreaField('Poznámky')
     subject = SelectField('Předmět', choices=VALID_SUBJECTS)
     submit = SubmitField('Potvrdit')
+
+class ChangePasswordForm(FlaskForm):
+    password = PasswordField('Heslo', validators=[DataRequired()], render_kw={"placeholder": "heslo"})
+    confirm_password = PasswordField('Potvrdit heslo', validators=[DataRequired(), EqualTo('password')], render_kw={"placeholder": "heslo znovu"})
+    submit = SubmitField('Potvrdit')
