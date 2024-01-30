@@ -187,13 +187,20 @@ def delete_item(item_id):
     flash('Příspěvek byl smazán', 'success')
     return redirect(url_for('my_items'))
 
-@app.route('/search/basic/query', methods=['POST'])
-def basic_search_query():
+@app.route('/search/query', methods=['POST'])
+def search_query():
     q = request.form['q']
     results = []
     if q:
         if len(q) > 1:
-            results.extend(Item.query.filter(Item.name.icontains(q)))
+            if 'name' in request.form:
+                results.extend(Item.query.filter(Item.name.icontains(q)))
+            if 'tags' in request.form:
+                results.extend(Item.query.filter(Item.tags.icontains(q)))
+            if 'files' in request.form:
+                results.extend(Item.query.filter(Item.filenames.icontains(q)))
+            if 'note' in request.form:
+                results.extend(Item.query.filter(Item.note.icontains(q)))
         for item in results:
             item.author_username = User.query.filter_by(id=item.uploaded_by).first().username
     return render_template('search_result.html', results=results, q=q)

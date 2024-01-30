@@ -23,9 +23,11 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     border: 1px solid var(--text-color);
+    height: 2.45rem;
+    position: relative;
 }
 
-.search-bar .fa-search {
+.search-bar button {
     background: transparent;
     color: var(--text-color);
     border: none;
@@ -33,7 +35,7 @@ body {
     font-size: 100%;
 }
 
-.search-bar .fa-search:hover {
+.search-bar button:hover {
     color: var(--disabled-text-color);
 }
 
@@ -58,6 +60,20 @@ body {
 }
 .htmx-request.indicator {
     display: inline;
+}
+
+.search-options {
+    display: none;
+    background-color: var(--search-bar-hover-color);
+    padding: 10px;
+    border-radius: var(--border-radius);
+}
+
+.search-options.dropped {
+    display: block;
+    position: absolute;
+    right: 2px;
+    top: 2.5rem;
 }
 
 @media screen and (max-width: 800px) {

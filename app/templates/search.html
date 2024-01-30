@@ -8,10 +8,17 @@
 
 {% block body %}
 
-<form class="search-bar" hx-post="{{ url_for('basic_search_query') }}" hx-target="#search-results" hx-indicator="#spinner" hx-trigger="submit, load">
-    <input type="text" class="search-input" name="q">
-    <button class="fa fa-search" type="submit"></button>
-    
+<form class="search-bar" hx-target="#search-results" hx-indicator="#spinner" hx-trigger="submit, load">
+    <input hx-post="{{ url_for('search_query') }}" type="text" class="search-input" name="q">
+    <div class="search-options" onclick="stopEventPropagation(event)">
+        <b>Hledat v:</b> <br>
+        <input type="checkbox" name="name" checked> Název <br>
+        <input type="checkbox" name="tags" checked> Tagy <br>
+        <input type="checkbox" name="files"> Soubory <br>
+        <input type="checkbox" name="note"> Poznámka
+    </div>
+    <button hx-post="{{ url_for('search_query') }}" class="fa fa-search" type="submit"></button>
+    <button onclick="toggleOptions(event)" class="fa fa-filter"></button>
 </form>
 
 <span id="no-results" style="visibility: hidden;margin-top: 1rem;">Žádné výsledky</span>
@@ -24,5 +31,23 @@
 
 <script>
     document.getElementById('search').classList.add('active');
+</script>
+
+<script>
+    function stopEventPropagation(event) {
+        event.stopPropagation()
+    }
+    function toggleOptions(event) {
+        event.stopPropagation()
+        options = document.getElementsByClassName('search-options')[0];
+        options.classList.toggle('dropped')
+    }
+    function hideOptions(event) {
+        options = document.getElementsByClassName('search-options')[0];
+        options.classList.remove('dropped')
+    }
+    document.addEventListener('click', () => {
+        hideOptions(event)
+    })
 </script>
 {% endblock %}
