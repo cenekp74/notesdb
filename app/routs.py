@@ -38,7 +38,10 @@ def account():
             new_image = Image.open(form.pp.data)
             new_image = new_image.resize(image_size)
             new_image.save(image_path)
-            os.remove(os.path.join(app.root_path, 'static/pp', current_user.pp))
+            if current_user.pp != 'default.png':
+                try:
+                    os.remove(os.path.join(app.root_path, 'static/pp', current_user.pp))
+                except: pass
             current_user.pp = image_name
         current_user.username = form.username.data
         current_user.email = form.email.data
