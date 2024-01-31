@@ -304,7 +304,7 @@ def confirm_password_reset(email, token):
     if not user: abort(404)
     if not user.validate_token(token):
         flash('Odkaz je neplatný nebo příliš starý', 'danger')
-        return(redirect(url_for('/')))
+        return(redirect(url_for('index')))
     form = ChangePasswordForm()
     if form.validate_on_submit():
         hashed_pass = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
