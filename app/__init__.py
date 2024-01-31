@@ -13,7 +13,7 @@ VALID_SUBJECTS = ['', 'český jazyk a literatura', 'matematika', 'biologie', 'g
 VALID_PROFESSORS =  ['', 'Karel Bednář', 'Kateřina Borovičková', 'Karel Bříza', 'Kateřina Burgetová', 'Christopher Dunn', 'Natálie Dunn', 'Filip Dušek', 'Blanka Fabriková', 'Jakub Fajfr', 'Anke Fillibeck', 'Gabriela Gaudlová', 'Eva Chmelařová', 'Karel Chottous', 'Lenka Janečková', 'Zuzana Korcová', 'Nathalie Lamandé', 'Martin Mejzr', 'Jana Moravcová', 'Marie Nosková', 'Kateřina Odcházelová', 'Blanka Pešková', 'Jaroslav Picka', 'Ina Rajsiglová', 'Roman Sixta', 'Martina Skuhravá', 'Michal Slačík', 'Markéta Smetanová', 'David Staněk', 'Kristýna Svobodová', 'Jiří Šlédr', 'Jana Škvorová', 'Jan Šperling', 'Martin Švejnoha', 'Jaromír Tkadleček', 'Jana Tláskalová', 'Michala Tomková', 'Jana Třeštíková', 'Josef Tvrský', 'Alena Volfová', 'Nela Žižková']
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '5e72ba27fc6a863eed13c27e6750bd25ab0be9ff55ac0e34823d966c1ce4896026992f2639857117'
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SECURITY_PASSWORD_SALT'] = os.getenv('SECURITY_PASSWORD_SALT')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
