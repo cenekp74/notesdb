@@ -8,8 +8,8 @@
 
 {% block body %}
 
-<form class="search-bar" hx-target="#search-results" hx-indicator="#spinner" hx-trigger="submit, load">
-    <input hx-post="{{ url_for('search_query') }}" type="text" class="search-input" name="q">
+<form hx-post="{{ url_for('search_query') }}" class="search-bar" hx-target="#search-results" hx-indicator="#spinner" hx-trigger="submit, load">
+    <input type="text" class="search-input" name="q">
     <div class="search-options" onclick="stopEventPropagation(event)">
         <b>Hledat v:</b> <br>
         <input type="checkbox" name="name" checked> Název <br>
@@ -28,13 +28,13 @@
             {% endfor %}
         </select><br><br>
         Seřadit <select name="sort">
-            <option value="datetime_newest">Od nejmladšího</option>
+            <option value="datetime_newest">Od nejnovějšího</option>
             <option value="datetime_oldest">Od nejstaršího</option>
             <option value="subject">Podle předmětu</option>
         </select>
     </div>
-    <button hx-post="{{ url_for('search_query') }}" hx-trigger="load" class="fa fa-search" type="submit"></button>
-    <button onclick="toggleOptions(event)" class="fa fa-filter"></button>
+    <button class="fa fa-search" type="submit"></button>
+    <button type="button" onclick="toggleOptions(event)" class="fa fa-filter"></button>
 </form>
 
 <span id="no-results" style="visibility: hidden;margin-top: 1rem;">Žádné výsledky</span>
