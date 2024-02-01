@@ -65,3 +65,7 @@ function toggleAccountDropdown() {
     element = document.getElementsByClassName('account-dropdown-content')[0];
     element.classList.toggle('dropped');
 }
+
+const setTheme = theme => document.documentElement.className = theme;
+
+setTheme("light")

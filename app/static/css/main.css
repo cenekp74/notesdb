@@ -1,4 +1,11 @@
 body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+:root.dark {
     --text-color: #ece2e5;
     --bg-color: #231b1d;
     --secondary-color: #45674d;
@@ -19,10 +26,7 @@ body {
     --table-hover-color: rgba(120, 173, 182, 0.2);
     --item-color: #2a272c;
     --item-outline-color: var(--secondary-color);
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    --search-bar-hover-color: #313235;
 }
 
 * {
