@@ -68,4 +68,34 @@ function toggleAccountDropdown() {
 
 const setTheme = theme => document.documentElement.className = theme;
 
-setTheme("light")
+function getCookie(name) {
+    let cookie = {};
+    document.cookie.split(';').forEach(function(el) {
+      let split = el.split('=');
+      cookie[split[0].trim()] = split.slice(1).join("=");
+    })
+    return cookie[name];
+}
+
+function setThemeFromCookie() {
+    theme = getCookie('theme')
+    if (!theme) {
+        setTheme('dark')
+        setThemeCookie('dark')
+    }
+    setTheme(theme)
+}
+
+function setThemeCookie(theme) {
+    const existingThemeCookie = document.cookie.split('; ').find(cookie => cookie.startsWith('theme='));
+    if (existingThemeCookie) {
+        document.cookie = document.cookie.replace(/theme=([^;]+)/, `theme=${theme}`);
+    } else {
+        const cookieString = `theme=${theme}`;
+        document.cookie = document.cookie ? `${document.cookie}; ${cookieString}` : cookieString;
+    }
+}
+
+setThemeCookie('dark')
+
+setThemeFromCookie()
