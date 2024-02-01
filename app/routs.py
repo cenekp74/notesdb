@@ -66,7 +66,9 @@ def my_items():
 def user(username):
     user = User.query.filter_by(username=username).first()
     if not user: abort(404)
-    my = True if current_user.id == user.id else False 
+    if current_user.is_authenticated:
+        my = True if current_user.id == user.id else False 
+    else: my=False
     return render_template('profile.html', user=user, my=my)
 
 @app.route('/item/<item_id>')
@@ -196,7 +198,7 @@ def search_query():
     q = request.form['q']
     results = set()
     if q:
-        if len(q) > 1:
+        if len(q) > -1:
             if 'name' in request.form:
                 results.update(Item.query.filter(Item.name.icontains(q)))
             if 'tags' in request.form:
