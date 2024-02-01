@@ -198,7 +198,7 @@ def search_query():
     q = request.form['q']
     results = set()
     if q:
-        if len(q) > -1:
+        if len(q) > 1:
             if 'name' in request.form:
                 results.update(Item.query.filter(Item.name.icontains(q)))
             if 'tags' in request.form:
@@ -213,14 +213,15 @@ def search_query():
             results = {item for item in results if item.prof == request.form['prof']}
         for item in results:
             item.author_username = User.query.filter_by(id=item.uploaded_by).first().username
-        results = list(results)
-
-        if request.form['sort'] == 'datetime_oldest':
+    else:
+        results.update(Item.query.all())
+    results = list(results)
+    if request.form['sort'] == 'datetime_oldest':
             results.sort(key=lambda item: item.datetime_uploaded)
-        elif request.form['sort'] == 'datetime_newest':
-            results.sort(key=lambda item: item.datetime_uploaded, reverse=True)
-        elif request.form['sort'] == 'subject':
-            results.sort(key=lambda item: item.subject)
+    elif request.form['sort'] == 'datetime_newest':
+        results.sort(key=lambda item: item.datetime_uploaded, reverse=True)
+    elif request.form['sort'] == 'subject':
+        results.sort(key=lambda item: item.subject)
     return render_template('search_result.html', results=results, q=q)
 
 @app.route('/search')
