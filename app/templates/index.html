@@ -6,7 +6,7 @@
 
 {% block body %}
 
-<div>
+<div style="position: relative;">
     <br><br>
     <p>
         Tahle stránka slouží ke sdílení studijních materiálú pro studenty <a href="https://gekom.cz">GEKOMu</a>. 
@@ -18,6 +18,13 @@
     <small>
         Tato stránka a veškeré její části jsou k dispozici pro nekomerční využití na <a href="https://github.com/cenekp74/zapisky">githubu</a>.
     </small>
+    <div class="theme-switch">
+        <b>Theme (light/dark)</b>
+        <label class="switch" onclick="changeTheme()">
+            <input type="checkbox" class="theme-checkbox">
+            <span class="slider round"></span>
+        </label>
+    </div>
 </div>
 
 {% endblock %}

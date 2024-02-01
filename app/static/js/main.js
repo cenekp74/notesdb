@@ -108,4 +108,10 @@ function changeTheme() {
     setThemeFromCookie()
 }
 
+if (document.querySelector('.theme-checkbox')) {
+    if (getCookie('theme') == 'dark') {
+        document.querySelector('.theme-checkbox').checked = true;
+    }    
+}
+
 setThemeFromCookie()
