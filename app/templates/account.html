@@ -19,6 +19,13 @@
             <small title="Account created: {{ user.account_created.date() }}">u/{{ user.username }}</small><small style="float: right; font-size: 70%;">Account created: {{ user.account_created.date() }}</small>
             <div>{{ user.name }}</div>
         </div>
+        <div class="theme-switch">
+            <b>Theme (light/dark)</b>
+            <label class="switch" onclick="changeTheme()">
+                <input type="checkbox" class="theme-checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
     </div>
     <div style="flex: 60%">
         <div class="profile-view container-form">
@@ -54,6 +61,17 @@
     function openPpImageDialog() {
         button = document.getElementById("pp")
         button.click()
+    }
+    function getCookie(name) {
+        let cookie = {};
+        document.cookie.split(';').forEach(function(el) {
+        let split = el.split('=');
+        cookie[split[0].trim()] = split.slice(1).join("=");
+        })
+        return cookie[name];
+    }
+    if (getCookie('theme') == 'dark') {
+        document.querySelector('.theme-checkbox').checked = true;
     }
 </script>
 

@@ -96,6 +96,16 @@ function setThemeCookie(theme) {
     }
 }
 
-setThemeCookie('dark')
+function changeTheme() {
+    checkboxEle = document.querySelector('.theme-checkbox')
+    if (checkboxEle.checked) {
+        theme = 'dark'
+    }
+    else {
+        theme = 'light'
+    }
+    setThemeCookie(theme)
+    setThemeFromCookie()
+}
 
 setThemeFromCookie()
