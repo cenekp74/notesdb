@@ -12,6 +12,7 @@ body {
     --active-page-color: #1f4436c0;
     --link-color: #a682ee;
     --hover-link-color: #bca4ee;
+    --paragraph-color: #39463c54;
     --button-color: #1f4929;
     --button-text-color: #e3dff8;
     --button-hover-text-color: #cfc6f8;
@@ -34,8 +35,9 @@ body {
     --bg-color: #f0f6fb;
     --secondary-color: #7fbff0;
     --active-page-color: #318ed6c0;
-    --link-color: #a682ee;
-    --hover-link-color: #bca4ee;
+    --link-color: #3e3058;
+    --hover-link-color: #544d64;
+    --paragraph-color: #7fbff083;
     --button-color: var(--active-page-color);
     --button-text-color: var(--text-color);
     --button-hover-text-color: #cfc6f8;
@@ -186,6 +188,9 @@ small {
 p {
     line-height: 1.5rem;
     font-size: 110%;
+    background-color: var(--paragraph-color);
+    padding: .5rem;
+    border-radius: var(--border-radius);
 }
 
 /* #region profileview */
