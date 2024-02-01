@@ -26,10 +26,12 @@
             <td><b>Tagy:</b></td>
             <td>{{ item.tags }}</td>
         </tr>
+        {% if item.subject %}
         <tr>
             <td><b>Předmět:</b></td>
             <td style="text-transform: lowercase;">{{ item.subject }}</td>
         </tr>
+        {% endif %}
         {% if item.prof %}
         <tr>
             <td><b>Profesor:</b></td>
