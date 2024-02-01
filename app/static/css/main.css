@@ -192,6 +192,7 @@ p {
     background-color: var(--paragraph-color);
     padding: .5rem;
     border-radius: var(--border-radius);
+    max-width: 900px;
 }
 
 /* #region profileview */
