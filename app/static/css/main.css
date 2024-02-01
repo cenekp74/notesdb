@@ -29,6 +29,30 @@ body {
     --search-bar-hover-color: #313235;
 }
 
+:root.light {
+    --text-color: #05090c;
+    --bg-color: #f0f6fb;
+    --secondary-color: #7fbff0;
+    --active-page-color: #318ed6c0;
+    --link-color: #a682ee;
+    --hover-link-color: #bca4ee;
+    --button-color: var(--active-page-color);
+    --button-text-color: var(--text-color);
+    --button-hover-text-color: #cfc6f8;
+    --disabled-button-color: #4987b6ce;
+    --disabled-text-color: #b39ca3;
+    --form-color: #8cbfe9;
+    --form-field-color: #676dc2;
+    --border-radius: 5px;
+    --alert-bg-color: var(--secondary-color);
+    --alert-success-text-color: #2f3d30;
+    --alert-danger-text-color: #503f3f;
+    --table-hover-color: rgba(54, 218, 247, 0.2);
+    --item-color: #abafee;
+    --item-outline-color: #575979;
+    --search-bar-hover-color: #9fbbd1;
+}
+
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
