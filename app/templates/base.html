@@ -21,7 +21,7 @@
                 <div class="account-control">
                     {% if current_user.is_authenticated %}
                     <div class="account-dropdown">
-                        <a onclick="toggleAccountDropdown()">Účet <i class="fa fa-caret-down"></i></a>
+                        <a style="cursor: pointer;" onclick="toggleAccountDropdown()">Účet <i class="fa fa-caret-down"></i></a>
                         <div class="account-dropdown-content">
                             <a id="account" href="{{ url_for('account') }}">Nastavení</a>
                             <a id="my-items" href="{{ url_for('my_items') }}">Moje příspěvky</a>
