@@ -8,7 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
-VALID_ITEM_TYPES = ['zápisky', 'učebnice', 'prezentace', 'jiné']
+VALID_ITEM_TYPES = ['zápisky', 'učebnice', 'prezentace', 'kartičky', 'jiné']
 VALID_SUBJECTS = ['', 'český jazyk a literatura', 'matematika', 'biologie', 'geografie (zeměpis)', 'dějepis', 'anglický jazyk', 'francouzský jazyk', 'německý jazyk', 'fyzika', 'chemie', 'společenské vědy', 'informatika', 'hudební výchova', 'výtvarná výchova']
 VALID_PROFESSORS =  ['', 'Karel Bednář', 'Kateřina Borovičková', 'Karel Bříza', 'Kateřina Burgetová', 'Christopher Dunn', 'Natálie Dunn', 'Filip Dušek', 'Blanka Fabriková', 'Jakub Fajfr', 'Anke Fillibeck', 'Gabriela Gaudlová', 'Eva Chmelařová', 'Karel Chottous', 'Lenka Janečková', 'Zuzana Korcová', 'Nathalie Lamandé', 'Martin Mejzr', 'Jana Moravcová', 'Marie Nosková', 'Kateřina Odcházelová', 'Blanka Pešková', 'Jaroslav Picka', 'Ina Rajsiglová', 'Roman Sixta', 'Martina Skuhravá', 'Michal Slačík', 'Markéta Smetanová', 'David Staněk', 'Kristýna Svobodová', 'Jiří Šlédr', 'Jana Škvorová', 'Jan Šperling', 'Martin Švejnoha', 'Jaromír Tkadleček', 'Jana Tláskalová', 'Michala Tomková', 'Jana Třeštíková', 'Josef Tvrský', 'Alena Volfová', 'Nela Žižková']
 
