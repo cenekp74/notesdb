@@ -215,8 +215,6 @@ def search_query():
             results = {item for item in results if item.subject == request.form['subject']}
         if request.form['prof']:
             results = {item for item in results if item.prof == request.form['prof']}
-        for item in results:
-            item.author_username = User.query.filter_by(id=item.uploaded_by).first().username
     else:
         results.update(Item.query.all())
     results = list(results)
@@ -226,6 +224,8 @@ def search_query():
         results.sort(key=lambda item: item.datetime_uploaded, reverse=True)
     elif request.form['sort'] == 'subject':
         results.sort(key=lambda item: item.subject)
+    for item in results:
+        item.author_username = User.query.filter_by(id=item.uploaded_by).first().username
     return render_template('search_result.html', results=results, q=q)
 
 @app.route('/search')
