@@ -44,7 +44,11 @@ def account():
                 except: pass
             current_user.pp = image_name
         current_user.username = form.username.data
-        current_user.email = form.email.data
+        if current_user.email != form.email.data:
+            current_user.email = form.email.data
+            current_user.confirmed = False
+            resend_confirmation()
+            flash('Pro potvrzení nové email adresy prosím klikněte na odkaz v mailu.')
         current_user.name = form.name.data
         db.session.commit()
         flash('Změny uloženy', 'success')

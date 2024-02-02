@@ -142,6 +142,7 @@ a mark {
     text-align: center;
     margin-top: .3rem;
     font-style: italic;
+    text-indent: 3px;
 }
 
 .alert.alert-success {
