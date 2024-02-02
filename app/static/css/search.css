@@ -60,7 +60,7 @@
 
 .search-options {
     display: none;
-    background-color: var(--search-bar-hover-color);
+    background-color: var(--form-color);
     padding: 10px;
     border-radius: var(--border-radius);
 }
