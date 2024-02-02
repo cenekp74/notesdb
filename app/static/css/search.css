@@ -63,6 +63,7 @@
     background-color: var(--form-color);
     padding: 10px;
     border-radius: var(--border-radius);
+    outline: 1px solid var(--item-outline-color);
 }
 
 .search-options.dropped {
