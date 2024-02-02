@@ -175,7 +175,7 @@ def edit_item(item_id):
         item.note = form.note.data
         item.subject = form.subject.data
 
-        item.note += f"\n --- \n Editováno {datetime.date.today()}"
+        item.note += f"\n--- \nEditováno {datetime.date.today()}"
 
         db.session.commit()
         flash('Změny uloženy')
