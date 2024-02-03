@@ -211,12 +211,14 @@ def search_query():
                 results.update(Item.query.filter(Item.filenames.icontains(q)))
             if 'note' in request.form:
                 results.update(Item.query.filter(Item.note.icontains(q)))
-        if request.form['subject']:
-            results = {item for item in results if item.subject == request.form['subject']}
-        if request.form['prof']:
-            results = {item for item in results if item.prof == request.form['prof']}
     else:
         results.update(Item.query.all())
+        
+    if request.form['subject']:
+            results = {item for item in results if item.subject == request.form['subject']}
+    if request.form['prof']:
+        results = {item for item in results if item.prof == request.form['prof']}
+
     results = list(results)
     if request.form['sort'] == 'datetime_oldest':
             results.sort(key=lambda item: item.datetime_uploaded)
