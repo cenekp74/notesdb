@@ -1,3 +1,6 @@
-Ahoj {{ user.username }}!
+Ahoj {{ user.username }}! <br>
 
-Pro potvrzení účtu klikni na <a href="{{ url_for('confirm_account', token=token, _external=True) }}">tento odkaz</a>
+Pro potvrzení účtu klikněte na <a href="{{ url_for('confirm_account', token=token, _external=True) }}">tento odkaz</a>
+<br><br><br><br>
+<small>Pokud jste nežádali o aktivaci účtu, můžete tento email ignorovat.</small><br>
+<small><a href="https://notesdb.cz">NotesDB</a></small>
