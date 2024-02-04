@@ -198,6 +198,12 @@ p {
     max-width: 900px;
 }
 
+.theme-switch {
+    position: absolute;
+    bottom: -1.22rem;
+    right: 0;
+}
+
 /* #region profileview */
 /* zobrazeni profilu bud v account.html nebo v profile.html (to zatim neni vytvoreny) */
 
@@ -243,12 +249,6 @@ p {
     bottom: 3px;
     left: 0;
     padding: 5px;
-}
-
-.theme-switch {
-    position: absolute;
-    bottom: 0;
-    right: 0;
 }
 
 .switch {
