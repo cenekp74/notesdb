@@ -335,6 +335,11 @@ input:checked + .slider:before {
     margin-bottom: auto;
 }
 
+.item-server-note {
+    margin-bottom: 1rem;
+    font-size: 90%;
+}
+
 .item-details {
     font-size: 75%;
     display: flex;

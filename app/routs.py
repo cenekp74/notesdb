@@ -199,7 +199,7 @@ def delete_item(item_id):
 
 @app.route('/search/query', methods=['POST'])
 def search_query():
-    q = request.form['q']
+    q = request.form['q'].lower()
     results = set()
     if q:
         if len(q) > 1:
@@ -228,7 +228,17 @@ def search_query():
         results.sort(key=lambda item: item.subject)
     for item in results:
         item.author_username = User.query.filter_by(id=item.uploaded_by).first().username
-        item.name = item.name.replace(q, f'<mark>{q}</mark>')
+        if q:
+            if q in item.name.lower():
+                item.name = item.name.lower().replace(q, f'<mark>{q}</mark>')
+            
+            if q in item.tags.lower():
+                item.server_note = '<b>Tagy</b>: ' + item.tags.lower().replace(q, f'<mark>{q}</mark>')
+            elif q in item.filenames.lower():
+                item.server_note = '<b>Soubory</b>: ' + item.filenames.lower().replace(q, f'<mark>{q}</mark>')
+            elif q in item.note.lower():
+                item.server_note = '<b>Poznámka</b>: ' + item.note.lower().replace(q, f'<mark>{q}</mark>')
+            
     return render_template('search_result.html', results=results, q=q)
 
 @app.route('/search')

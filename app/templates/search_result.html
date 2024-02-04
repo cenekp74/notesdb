@@ -2,6 +2,9 @@
 <a class="item-box" href="{{ url_for('view_item', item_id=item.id) }}">
     <div class="item">
         <div class="item-name">{{ item.name | safe}}</div>
+        {% if item.server_note %}
+        <div class="item-server-note">{{ item.server_note | safe }}</div>
+        {% endif %}
         <div>{{ item.subject }}</div>
         <small>{{ item.item_type }}</small>
         <div class="item-details">
