@@ -109,9 +109,11 @@ function changeTheme() {
 }
 
 if (document.querySelector('.theme-checkbox')) {
-    if (getCookie('theme') == 'dark') {
+    if (getCookie('theme') == 'light') {
+        document.querySelector('.theme-checkbox').checked = false;
+    } else {
         document.querySelector('.theme-checkbox').checked = true;
-    }    
+    }
 }
 
 setThemeFromCookie()

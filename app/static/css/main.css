@@ -28,6 +28,7 @@ body {
     --item-color: #2a272c;
     --item-outline-color: var(--secondary-color);
     --search-bar-hover-color: #202225;
+    --search-highlight-color: #5b416b;
 }
 
 :root.light {
@@ -53,6 +54,7 @@ body {
     --item-color: #abbaee;
     --item-outline-color: #575979;
     --search-bar-hover-color: #c4e2fa;
+    --search-highlight-color: #627bd4;
 }
 
 * {
@@ -115,8 +117,8 @@ a:hover {
 }
 
 a mark {
-    color: var(--bg-color);
     background-color: var(--search-highlight-color);
+    color: var(--text-color);
 }
 
 .content {

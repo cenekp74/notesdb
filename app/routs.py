@@ -228,6 +228,7 @@ def search_query():
         results.sort(key=lambda item: item.subject)
     for item in results:
         item.author_username = User.query.filter_by(id=item.uploaded_by).first().username
+        item.name = item.name.replace(q, f'<mark>{q}</mark>')
     return render_template('search_result.html', results=results, q=q)
 
 @app.route('/search')
