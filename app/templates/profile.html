@@ -11,7 +11,7 @@
 <div class="display-flex account-page-container">
     <div class="profile-view profile-container">
         <div class="profile-view pp-image-container">
-            <img class="profile-view pp-image cursor-pointer" src="{{ url_for('static', filename='pp/' + user.pp) }}">
+            <img class="profile-view pp-image" src="{{ url_for('static', filename='pp/' + user.pp) }}">
             {% if my %}
             <a class="account-link button-link" href="{{ url_for('account') }}">Upravit</a>
             {% endif %}
