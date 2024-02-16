@@ -2,7 +2,7 @@
 
 {% block head %}
 <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-<link rel="stylesheet" href="{{ url_for('static', filename='/css/search.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/search-001.css') }}">
 {% endblock %}
 
 
@@ -31,7 +31,8 @@
             <option value="datetime_newest">Od nejnovějšího</option>
             <option value="datetime_oldest">Od nejstaršího</option>
             <option value="subject">Podle předmětu</option>
-        </select>
+        </select><br>
+        <button class="search-options-submit-button" type="submit">Potvrdit</button>
     </div>
     <button class="fa fa-search" type="submit"></button>
     <button type="button" onclick="toggleOptions(event)" class="fa fa-filter"></button>
