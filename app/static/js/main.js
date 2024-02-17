@@ -66,6 +66,11 @@ function toggleAccountDropdown() {
     element.classList.toggle('dropped');
 }
 
+function hideAccountDropdown() {
+    element = document.getElementsByClassName('account-dropdown-content')[0];
+    element.classList.remove('dropped');
+}
+
 const setTheme = theme => document.documentElement.className = theme;
 
 function getCookie(name) {
@@ -122,9 +127,11 @@ if (document.querySelector('.theme-checkbox')) {
 
 document.addEventListener('click', () => {
     hide_topnav()
+    hideAccountDropdown()
 })
 document.addEventListener('scroll', () => {
     hide_topnav()
+    hideAccountDropdown()
 })
 
 setThemeFromCookie()
