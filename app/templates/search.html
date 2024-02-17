@@ -2,7 +2,7 @@
 
 {% block head %}
 <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-<link rel="stylesheet" href="{{ url_for('static', filename='/css/search-001.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/search-002.css') }}">
 {% endblock %}
 
 
@@ -12,10 +12,10 @@
     <input type="text" class="search-input" name="q">
     <div class="search-options" onclick="stopEventPropagation(event)">
         <b>Hledat v:</b> <br>
-        <input type="checkbox" name="name" checked> Název <br>
-        <input type="checkbox" name="tags" checked> Tagy <br>
-        <input type="checkbox" name="files"> Soubory <br>
-        <input type="checkbox" name="note"> Poznámka <br><br>
+        <label><input type="checkbox" name="name" checked> Název</label><br>
+        <label><input type="checkbox" name="tags" checked> Tagy</label><br>
+        <label><input type="checkbox" name="files"> Soubory</label><br>
+        <label><input type="checkbox" name="note"> Poznámka</label><br>
         <b>Filtrovat:</b> <br>
         Profesor <select name="prof">
             {% for prof in profs %}
