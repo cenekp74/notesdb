@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="topnav-wrapper">
+    <div class="topnav-wrapper" onclick="stopEventPropagation(event)">
         <div class="topnav" id="topnav">
             <a href="/" class="logo">NotesDB</a>
             <div id="topnav-links" class="topnav-left topnav-links">
@@ -39,7 +39,7 @@
         </div>
     </div>
     
-    <div class="content" onclick="hide_topnav()">
+    <div class="content">
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
         {% for category, message in messages %}

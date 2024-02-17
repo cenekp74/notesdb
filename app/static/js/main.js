@@ -108,6 +108,10 @@ function changeTheme() {
     setThemeFromCookie()
 }
 
+function stopEventPropagation(event) {
+    event.stopPropagation()
+}
+
 if (document.querySelector('.theme-checkbox')) {
     if (getCookie('theme') == 'light') {
         document.querySelector('.theme-checkbox').checked = false;
@@ -115,5 +119,12 @@ if (document.querySelector('.theme-checkbox')) {
         document.querySelector('.theme-checkbox').checked = true;
     }
 }
+
+document.addEventListener('click', () => {
+    hide_topnav()
+})
+document.addEventListener('scroll', () => {
+    hide_topnav()
+})
 
 setThemeFromCookie()
