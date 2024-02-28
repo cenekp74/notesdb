@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<meta property="og:description" content="{{ item.name }}">
+<meta property="og:title" content="{{ item.name }}">
+<meta property="og:description" content="Příspěvek: \n předmět: {{ item.subject }} \n typ: {{ item.type }}">
+<meta property="og:image" content="https://notesdb.cz/favicon.ico">
 {% endblock %}
 
 
