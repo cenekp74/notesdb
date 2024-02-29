@@ -2,7 +2,7 @@
 
 {% block head %}
 <meta property="og:title" content="{{ user.name }}">
-<meta property="og:description" content="u/{{ user.username }}      Počet příspěvků: {{ user.items|length }}">
+<meta property="og:description" content="{{ user.username }}      Počet příspěvků: {{ user.items|length }}">
 {% endblock %}
 
 
