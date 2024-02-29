@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<meta property="og:title" content="{{ user.name }}">
+<meta property="og:description" content="u/{{ user.username }}      Počet příspěvků: {{ user.items|length }}">
 {% endblock %}
 
 
