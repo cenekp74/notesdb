@@ -1,3 +1,3 @@
-Jednou bych sem měl asi dopsat readme co... nonic mě se teď fakt nechce
+Webová stránka sloužící ke sdílení studijních materiálů. Backend je v Pythonu pomocí flasku, frontend je čistý html/css/js s menším využitím htmx.
 
 https://notesdb.cz
