@@ -179,7 +179,7 @@ def edit_item(item_id):
 
         db.session.commit()
         flash('Změny uloženy')
-        return redirect(url_for('edit_item', item_id=item_id))
+        return redirect(url_for('my_items', item_id=item_id))
     return render_template('edit_item.html', form=form)
 
 @app.route('/delete_item/<item_id>')

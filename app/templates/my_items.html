@@ -8,7 +8,7 @@
 
 <h2>Moje příspěvky</h2>
 <div class="items-container items-container-full" style="flex: 60%">
-    {% for item in user.items %}
+    {% for item in user.items|reverse %}
     <a class="item-box" href="{{ url_for('view_item', item_id=item.id) }}">
         <div class="item">
             <div class="item-name">{{ item.name }}</div>
