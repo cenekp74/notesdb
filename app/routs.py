@@ -156,8 +156,8 @@ def edit_item(item_id):
             if not new_filenames:
                 flash('Příspěvek musí mít alespoň jeden soubor. Změny nebyly uloženy.')
                 return render_template('edit_item.html', form=form)
-            elif len(new_filenames.split(';')) > 5:
-                flash('Maximalní počet souborů je 5. Změny nebyly uloženy.', 'danger')
+            elif len(new_filenames.split(';')) > 15:
+                flash('Maximalní počet souborů je 15. Změny nebyly uloženy.', 'danger')
                 return render_template('edit_item.html', form=form)
             else:
                 item.filenames = new_filenames

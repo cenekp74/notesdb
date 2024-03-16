@@ -58,8 +58,8 @@ class ItemForm(FlaskForm):
     submit = SubmitField('Potvrdit')
 
     def validate_files(self, files):
-        if len(files.data) > 5:
-            raise ValidationError('Maximalní počet souborů je 5')
+        if len(files.data) > 15:
+            raise ValidationError('Maximalní počet souborů je 15')
 
 class ItemEditForm(FlaskForm):
     name = StringField('Název', validators=[DataRequired(), Length(min=4, max=150)])
