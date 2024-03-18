@@ -20,9 +20,9 @@ from app import VALID_SUBJECTS, VALID_PROFESSORS
 def index():
     return render_template('index.html')
 
-@app.route('/favicon.ico')
+@app.route('/favicon.png')
 def send_favicon():
-    return send_from_directory('static/img', 'favicon.ico')
+    return send_from_directory('static/img', 'favicon.png')
 
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
