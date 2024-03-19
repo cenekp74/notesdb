@@ -349,6 +349,13 @@ input:checked + .slider:before {
     justify-content: space-between;
     margin-top: .5rem;
     border-top: 1px solid var(--disabled-text-color);
+    position: relative;
+}
+
+.item-details .item-views {
+    position: absolute;
+    right: 0;
+    top: -1.2rem;
 }
 
 .items-container {
