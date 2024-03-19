@@ -46,13 +46,15 @@
     {% if item.note %}
     <pre class="note">{{ item.note }}</pre>
     {% endif %}
-    <div>
-        <b>Soubory:</b><br>
-        <ul style="list-style: none;">
+    <div class="files">
+        <h2>Soubory:</h2><br>
+        <div>
             {% for filename in item.filenames.split(';') %}
-            <li><a style="text-decoration: none;" href="{{ url_for('static', filename='/items/{}/{}'.format(item.folder, filename)) }}">{{ filename }}</a></li>
+            <div>
+                <a target="_blank" href="{{ url_for('static', filename='/items/{}/{}'.format(item.folder, filename)) }}">{{ filename }}</a><a class="download" href="{{ url_for('static', filename='/items/{}/{}'.format(item.folder, filename)) }}" download><i class="fa fa-download"></i></a>
+            </div>
             {% endfor %}
-        </ul>
+        </div>
     </div>
 </div>
 
