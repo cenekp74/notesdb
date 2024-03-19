@@ -62,4 +62,17 @@ class Item(db.Model):
     uploaded_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     note = db.Column(db.Text) # nejaky dodatecny poznamky
     subject = db.Column(db.String(10)) # predmet
+    views = db.Column(db.Integer, default=0, nullable=False)
     generated_content = db.Column(db.Text) # content rozpoznany ai
+
+    def view_item(self, addr) -> None:
+        if not View.query.filter_by(item_id=self.id, ip_address=addr).first():
+            view = View(item_id=self.id, ip_address=addr)
+            db.session.add(view)
+            self.views += 1
+            db.session.commit()
+
+class View(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
+    ip_address = db.Column(db.String(50))
