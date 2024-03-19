@@ -369,6 +369,22 @@ input:checked + .slider:before {
 .item-view {
     margin-top: 2rem;
     width: 60%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.item-view .note {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--table-hover-color);
+    padding: .5rem;
+    border-radius: var(--border-radius);
+}
+
+.item-view .views {
+    margin-top: .17rem;
+    text-align: right;
 }
 
 .item-view table {
