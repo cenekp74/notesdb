@@ -387,6 +387,8 @@ input:checked + .slider:before {
     background-color: var(--table-hover-color);
     padding: .5rem;
     border-radius: var(--border-radius);
+    width: fit-content;
+    min-width: 50%;
 }
 
 .item-view .views {
