@@ -3,6 +3,7 @@
 {% block head %}
 <meta property="og:title" content="{{ item.name }}">
 <meta property="og:description" content="Předmět: {{ item.subject }}    Typ: {{ item.item_type }}">
+<link rel="canonical" href="https://notesdb.cz/item/{{ item.id }}">
 {% endblock %}
 
 
