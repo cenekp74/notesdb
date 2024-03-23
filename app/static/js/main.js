@@ -94,9 +94,9 @@ function setThemeFromCookie() {
 function setThemeCookie(theme) {
     const existingThemeCookie = document.cookie.split('; ').find(cookie => cookie.startsWith('theme='));
     if (existingThemeCookie) {
-        document.cookie = document.cookie.replace(/theme=([^;]+)/, `theme=${theme}`);
+        document.cookie = document.cookie.replace(/theme=([^;]+)/, `theme=${theme};path=/`);
     } else {
-        const cookieString = `theme=${theme}`;
+        const cookieString = `theme=${theme};path=/`;
         document.cookie = document.cookie ? `${document.cookie}; ${cookieString}` : cookieString;
     }
 }
