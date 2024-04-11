@@ -4,6 +4,7 @@
 <meta property="og:title" content="{{ item.name }}">
 <meta property="og:description" content="Předmět: {{ item.subject }}    Typ: {{ item.item_type }}">
 <link rel="canonical" href="https://notesdb.cz/item/{{ item.id }}">
+<script src="{{ url_for('static', filename='js/spotlight.bundle.js') }}"></script>
 {% endblock %}
 
 
@@ -57,6 +58,10 @@
             {% endfor %}
         </div>
     </div>
+    <div class="spotlight-group images">
+        {% for image in images %}
+        <img class="spotlight" src="{{ url_for('static', filename='/items/{}/{}'.format(item.folder, image)) }}">
+        {% endfor %}
+    </div>
 </div>
-
 {% endblock %}

@@ -85,7 +85,11 @@ def view_item(item_id):
     if current_user.is_authenticated and item.uploaded_by == current_user.id: my = True
     item.author_username = User.query.filter_by(id=item.uploaded_by).first().username
     item.view_item(request.remote_addr)
-    return render_template('item.html', item=item, my=my)
+    images = []
+    for filename in item.filenames.split(';'):
+        if filename.split('.')[-1] in ['jpg', 'png', 'jpeg', 'gif', 'avif', 'svg']:
+            images.append(filename)
+    return render_template('item.html', item=item, my=my, images=images)
 
 @app.route('/add', methods=['GET', 'POST'])
 @login_required

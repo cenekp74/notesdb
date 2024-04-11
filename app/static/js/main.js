@@ -68,7 +68,9 @@ function toggleAccountDropdown() {
 
 function hideAccountDropdown() {
     element = document.getElementsByClassName('account-dropdown-content')[0];
-    element.classList.remove('dropped');
+    if (element) {
+        element.classList.remove('dropped');
+    }
 }
 
 const setTheme = theme => document.documentElement.className = theme;
