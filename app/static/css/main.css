@@ -725,6 +725,7 @@ footer p {
     font-size: 60%;
     margin-bottom: 0;
     border-top-right-radius: var(--border-radius);
+    padding-top: 0;
 }
 
 
