@@ -2,7 +2,7 @@
 
 {% block head %}
 <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-<link rel="stylesheet" href="{{ url_for('static', filename='/css/search-003.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/search-003.css') }}">
 {% endblock %}
 
 
@@ -39,7 +39,7 @@
 </form>
 
 <span id="no-results" style="visibility: hidden;margin-top: 1rem;">Žádné výsledky</span>
-<img id="spinner" class="indicator" src="{{ url_for('static', filename='/img/spinner.svg') }}">
+<img id="spinner" class="indicator" src="{{ url_for('static', filename='img/spinner.svg') }}">
 
 <div id="search-results" class="items-container items-container-full">
     

@@ -53,14 +53,14 @@
         <div>
             {% for filename in item.filenames.split(';') %}
             <div>
-                <a target="_blank" href="{{ url_for('static', filename='/items/{}/{}'.format(item.folder, filename)) }}">{{ filename }}</a><a class="download" href="{{ url_for('static', filename='/items/{}/{}'.format(item.folder, filename)) }}" download><i class="fa fa-download"></i></a>
+                <a target="_blank" href="{{ url_for('static', filename='items/{}/{}'.format(item.folder, filename)) }}">{{ filename }}</a><a class="download" href="{{ url_for('static', filename='items/{}/{}'.format(item.folder, filename)) }}" download><i class="fa fa-download"></i></a>
             </div>
             {% endfor %}
         </div>
     </div>
     <div class="spotlight-group images">
         {% for image in images %}
-        <img class="spotlight" src="{{ url_for('static', filename='/items/{}/{}'.format(item.folder, image)) }}">
+        <img class="spotlight" src="{{ url_for('static', filename='items/{}/{}'.format(item.folder, image)) }}">
         {% endfor %}
     </div>
 </div>
