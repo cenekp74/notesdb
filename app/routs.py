@@ -24,13 +24,6 @@ def index():
 def send_favicon():
     return send_from_directory('static/img', 'favicon.png')
 
-@app.route('/sw.js')
-def send_swjs():
-    """
-    monetag
-    """
-    return send_from_directory('static/js', 'sw.js')
-
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
